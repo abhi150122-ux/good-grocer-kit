@@ -15,7 +15,7 @@ export function CustomerShell({ children }: { children: ReactNode }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
   return (
     <MobileFrame>
-      <div className="flex flex-1 flex-col">
+      <div className="relative flex flex-1 flex-col">
         <main className="flex-1 overflow-y-auto pb-24">{children}</main>
         <nav className="absolute bottom-0 left-1/2 z-20 w-full max-w-[440px] -translate-x-1/2 border-t border-border/60 bg-card/95 px-2 py-2 backdrop-blur md:rounded-b-[2.5rem]">
           <ul className="flex items-center justify-between">
