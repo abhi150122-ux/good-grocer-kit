@@ -86,9 +86,17 @@ function Landing() {
           ))}
         </div>
 
-        <p className="mt-12 text-center text-xs text-muted-foreground">
-          Static mock data • No backend • Built for client presentation
-        </p>
+        <div className="mt-12 flex flex-col items-center gap-2">
+          <Link
+            to="/whatsapp"
+            className="inline-flex items-center gap-2 rounded-full border bg-card px-4 py-2 text-xs font-semibold shadow-soft transition hover:bg-secondary"
+          >
+            💬 View WhatsApp notification preview
+          </Link>
+          <p className="text-center text-xs text-muted-foreground">
+            Static mock data • No backend • Built for client presentation
+          </p>
+        </div>
       </div>
     </div>
   );

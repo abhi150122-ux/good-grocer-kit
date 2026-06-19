@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhatsappRouteImport } from './routes/whatsapp'
 import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
@@ -51,6 +52,11 @@ import { Route as AdminDeliveryNewRouteImport } from './routes/admin.delivery.ne
 import { Route as AdminDeliveryIdRouteImport } from './routes/admin.delivery.$id'
 import { Route as AdminCustomersIdRouteImport } from './routes/admin.customers.$id'
 
+const WhatsappRoute = WhatsappRouteImport.update({
+  id: '/whatsapp',
+  path: '/whatsapp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DeliveryRoute = DeliveryRouteImport.update({
   id: '/delivery',
   path: '/delivery',
@@ -261,6 +267,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/delivery': typeof DeliveryRouteWithChildren
+  '/whatsapp': typeof WhatsappRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/customers': typeof AdminCustomersRouteWithChildren
   '/admin/delivery': typeof AdminDeliveryRouteWithChildren
@@ -302,6 +309,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/whatsapp': typeof WhatsappRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/customers': typeof AdminCustomersRouteWithChildren
   '/admin/delivery': typeof AdminDeliveryRouteWithChildren
@@ -346,6 +354,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/delivery': typeof DeliveryRouteWithChildren
+  '/whatsapp': typeof WhatsappRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/customers': typeof AdminCustomersRouteWithChildren
   '/admin/delivery': typeof AdminDeliveryRouteWithChildren
@@ -391,6 +400,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/delivery'
+    | '/whatsapp'
     | '/admin/categories'
     | '/admin/customers'
     | '/admin/delivery'
@@ -432,6 +442,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/whatsapp'
     | '/admin/categories'
     | '/admin/customers'
     | '/admin/delivery'
@@ -475,6 +486,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/delivery'
+    | '/whatsapp'
     | '/admin/categories'
     | '/admin/customers'
     | '/admin/delivery'
@@ -519,6 +531,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
   DeliveryRoute: typeof DeliveryRouteWithChildren
+  WhatsappRoute: typeof WhatsappRoute
   CustomerAddAddressRoute: typeof CustomerAddAddressRoute
   CustomerAddressesRoute: typeof CustomerAddressesRoute
   CustomerCartRoute: typeof CustomerCartRoute
@@ -541,6 +554,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/whatsapp': {
+      id: '/whatsapp'
+      path: '/whatsapp'
+      fullPath: '/whatsapp'
+      preLoaderRoute: typeof WhatsappRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/delivery': {
       id: '/delivery'
       path: '/delivery'
@@ -943,6 +963,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
   DeliveryRoute: DeliveryRouteWithChildren,
+  WhatsappRoute: WhatsappRoute,
   CustomerAddAddressRoute: CustomerAddAddressRoute,
   CustomerAddressesRoute: CustomerAddressesRoute,
   CustomerCartRoute: CustomerCartRoute,
