@@ -9,7 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as CustomerWelcomeRouteImport } from './routes/customer.welcome'
 import { Route as CustomerSplashRouteImport } from './routes/customer.splash'
 import { Route as CustomerSearchRouteImport } from './routes/customer.search'
@@ -26,14 +28,36 @@ import { Route as CustomerCategoriesRouteImport } from './routes/customer.catego
 import { Route as CustomerCartRouteImport } from './routes/customer.cart'
 import { Route as CustomerAddressesRouteImport } from './routes/customer.addresses'
 import { Route as CustomerAddAddressRouteImport } from './routes/customer.add-address'
+import { Route as AdminReportsRouteImport } from './routes/admin.reports'
+import { Route as AdminProductsRouteImport } from './routes/admin.products'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminDeliveryRouteImport } from './routes/admin.delivery'
+import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
+import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
 import { Route as CustomerProductIdRouteImport } from './routes/customer.product.$id'
 import { Route as CustomerOrdersIdRouteImport } from './routes/customer.orders.$id'
 import { Route as CustomerCategoryIdRouteImport } from './routes/customer.category.$id'
+import { Route as AdminProductsNewRouteImport } from './routes/admin.products.new'
+import { Route as AdminProductsIdRouteImport } from './routes/admin.products.$id'
+import { Route as AdminOrdersIdRouteImport } from './routes/admin.orders.$id'
+import { Route as AdminDeliveryNewRouteImport } from './routes/admin.delivery.new'
+import { Route as AdminDeliveryIdRouteImport } from './routes/admin.delivery.$id'
+import { Route as AdminCustomersIdRouteImport } from './routes/admin.customers.$id'
 
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
 } as any)
 const CustomerWelcomeRoute = CustomerWelcomeRouteImport.update({
   id: '/customer/welcome',
@@ -115,6 +139,36 @@ const CustomerAddAddressRoute = CustomerAddAddressRouteImport.update({
   path: '/customer/add-address',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProductsRoute = AdminProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDeliveryRoute = AdminDeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCustomersRoute = AdminCustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => AdminRoute,
+} as any)
 const CustomerProductIdRoute = CustomerProductIdRouteImport.update({
   id: '/customer/product/$id',
   path: '/customer/product/$id',
@@ -130,9 +184,46 @@ const CustomerCategoryIdRoute = CustomerCategoryIdRouteImport.update({
   path: '/customer/category/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminProductsNewRoute = AdminProductsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminProductsRoute,
+} as any)
+const AdminProductsIdRoute = AdminProductsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminProductsRoute,
+} as any)
+const AdminOrdersIdRoute = AdminOrdersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminOrdersRoute,
+} as any)
+const AdminDeliveryNewRoute = AdminDeliveryNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminDeliveryRoute,
+} as any)
+const AdminDeliveryIdRoute = AdminDeliveryIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminDeliveryRoute,
+} as any)
+const AdminCustomersIdRoute = AdminCustomersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminCustomersRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/customers': typeof AdminCustomersRouteWithChildren
+  '/admin/delivery': typeof AdminDeliveryRouteWithChildren
+  '/admin/orders': typeof AdminOrdersRouteWithChildren
+  '/admin/products': typeof AdminProductsRouteWithChildren
+  '/admin/reports': typeof AdminReportsRoute
   '/customer/add-address': typeof CustomerAddAddressRoute
   '/customer/addresses': typeof CustomerAddressesRoute
   '/customer/cart': typeof CustomerCartRoute
@@ -149,12 +240,25 @@ export interface FileRoutesByFullPath {
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
+  '/admin/delivery/$id': typeof AdminDeliveryIdRoute
+  '/admin/delivery/new': typeof AdminDeliveryNewRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/admin/products/$id': typeof AdminProductsIdRoute
+  '/admin/products/new': typeof AdminProductsNewRoute
   '/customer/category/$id': typeof CustomerCategoryIdRoute
   '/customer/orders/$id': typeof CustomerOrdersIdRoute
   '/customer/product/$id': typeof CustomerProductIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/customers': typeof AdminCustomersRouteWithChildren
+  '/admin/delivery': typeof AdminDeliveryRouteWithChildren
+  '/admin/orders': typeof AdminOrdersRouteWithChildren
+  '/admin/products': typeof AdminProductsRouteWithChildren
+  '/admin/reports': typeof AdminReportsRoute
   '/customer/add-address': typeof CustomerAddAddressRoute
   '/customer/addresses': typeof CustomerAddressesRoute
   '/customer/cart': typeof CustomerCartRoute
@@ -171,6 +275,13 @@ export interface FileRoutesByTo {
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/admin': typeof AdminIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
+  '/admin/delivery/$id': typeof AdminDeliveryIdRoute
+  '/admin/delivery/new': typeof AdminDeliveryNewRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/admin/products/$id': typeof AdminProductsIdRoute
+  '/admin/products/new': typeof AdminProductsNewRoute
   '/customer/category/$id': typeof CustomerCategoryIdRoute
   '/customer/orders/$id': typeof CustomerOrdersIdRoute
   '/customer/product/$id': typeof CustomerProductIdRoute
@@ -178,6 +289,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/customers': typeof AdminCustomersRouteWithChildren
+  '/admin/delivery': typeof AdminDeliveryRouteWithChildren
+  '/admin/orders': typeof AdminOrdersRouteWithChildren
+  '/admin/products': typeof AdminProductsRouteWithChildren
+  '/admin/reports': typeof AdminReportsRoute
   '/customer/add-address': typeof CustomerAddAddressRoute
   '/customer/addresses': typeof CustomerAddressesRoute
   '/customer/cart': typeof CustomerCartRoute
@@ -194,6 +312,13 @@ export interface FileRoutesById {
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
+  '/admin/delivery/$id': typeof AdminDeliveryIdRoute
+  '/admin/delivery/new': typeof AdminDeliveryNewRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/admin/products/$id': typeof AdminProductsIdRoute
+  '/admin/products/new': typeof AdminProductsNewRoute
   '/customer/category/$id': typeof CustomerCategoryIdRoute
   '/customer/orders/$id': typeof CustomerOrdersIdRoute
   '/customer/product/$id': typeof CustomerProductIdRoute
@@ -202,6 +327,13 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
+    | '/admin/categories'
+    | '/admin/customers'
+    | '/admin/delivery'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/reports'
     | '/customer/add-address'
     | '/customer/addresses'
     | '/customer/cart'
@@ -218,12 +350,25 @@ export interface FileRouteTypes {
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/admin/'
+    | '/admin/customers/$id'
+    | '/admin/delivery/$id'
+    | '/admin/delivery/new'
+    | '/admin/orders/$id'
+    | '/admin/products/$id'
+    | '/admin/products/new'
     | '/customer/category/$id'
     | '/customer/orders/$id'
     | '/customer/product/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin/categories'
+    | '/admin/customers'
+    | '/admin/delivery'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/reports'
     | '/customer/add-address'
     | '/customer/addresses'
     | '/customer/cart'
@@ -240,12 +385,26 @@ export interface FileRouteTypes {
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/admin'
+    | '/admin/customers/$id'
+    | '/admin/delivery/$id'
+    | '/admin/delivery/new'
+    | '/admin/orders/$id'
+    | '/admin/products/$id'
+    | '/admin/products/new'
     | '/customer/category/$id'
     | '/customer/orders/$id'
     | '/customer/product/$id'
   id:
     | '__root__'
     | '/'
+    | '/admin'
+    | '/admin/categories'
+    | '/admin/customers'
+    | '/admin/delivery'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/reports'
     | '/customer/add-address'
     | '/customer/addresses'
     | '/customer/cart'
@@ -262,6 +421,13 @@ export interface FileRouteTypes {
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/admin/'
+    | '/admin/customers/$id'
+    | '/admin/delivery/$id'
+    | '/admin/delivery/new'
+    | '/admin/orders/$id'
+    | '/admin/products/$id'
+    | '/admin/products/new'
     | '/customer/category/$id'
     | '/customer/orders/$id'
     | '/customer/product/$id'
@@ -269,6 +435,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   CustomerAddAddressRoute: typeof CustomerAddAddressRoute
   CustomerAddressesRoute: typeof CustomerAddressesRoute
   CustomerCartRoute: typeof CustomerCartRoute
@@ -291,12 +458,26 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
     }
     '/customer/welcome': {
       id: '/customer/welcome'
@@ -410,6 +591,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomerAddAddressRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/reports': {
+      id: '/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/products': {
+      id: '/admin/products'
+      path: '/products'
+      fullPath: '/admin/products'
+      preLoaderRoute: typeof AdminProductsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/delivery': {
+      id: '/admin/delivery'
+      path: '/delivery'
+      fullPath: '/admin/delivery'
+      preLoaderRoute: typeof AdminDeliveryRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/customers': {
+      id: '/admin/customers'
+      path: '/customers'
+      fullPath: '/admin/customers'
+      preLoaderRoute: typeof AdminCustomersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/categories': {
+      id: '/admin/categories'
+      path: '/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AdminCategoriesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/customer/product/$id': {
       id: '/customer/product/$id'
       path: '/customer/product/$id'
@@ -431,8 +654,124 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomerCategoryIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/products/new': {
+      id: '/admin/products/new'
+      path: '/new'
+      fullPath: '/admin/products/new'
+      preLoaderRoute: typeof AdminProductsNewRouteImport
+      parentRoute: typeof AdminProductsRoute
+    }
+    '/admin/products/$id': {
+      id: '/admin/products/$id'
+      path: '/$id'
+      fullPath: '/admin/products/$id'
+      preLoaderRoute: typeof AdminProductsIdRouteImport
+      parentRoute: typeof AdminProductsRoute
+    }
+    '/admin/orders/$id': {
+      id: '/admin/orders/$id'
+      path: '/$id'
+      fullPath: '/admin/orders/$id'
+      preLoaderRoute: typeof AdminOrdersIdRouteImport
+      parentRoute: typeof AdminOrdersRoute
+    }
+    '/admin/delivery/new': {
+      id: '/admin/delivery/new'
+      path: '/new'
+      fullPath: '/admin/delivery/new'
+      preLoaderRoute: typeof AdminDeliveryNewRouteImport
+      parentRoute: typeof AdminDeliveryRoute
+    }
+    '/admin/delivery/$id': {
+      id: '/admin/delivery/$id'
+      path: '/$id'
+      fullPath: '/admin/delivery/$id'
+      preLoaderRoute: typeof AdminDeliveryIdRouteImport
+      parentRoute: typeof AdminDeliveryRoute
+    }
+    '/admin/customers/$id': {
+      id: '/admin/customers/$id'
+      path: '/$id'
+      fullPath: '/admin/customers/$id'
+      preLoaderRoute: typeof AdminCustomersIdRouteImport
+      parentRoute: typeof AdminCustomersRoute
+    }
   }
 }
+
+interface AdminCustomersRouteChildren {
+  AdminCustomersIdRoute: typeof AdminCustomersIdRoute
+}
+
+const AdminCustomersRouteChildren: AdminCustomersRouteChildren = {
+  AdminCustomersIdRoute: AdminCustomersIdRoute,
+}
+
+const AdminCustomersRouteWithChildren = AdminCustomersRoute._addFileChildren(
+  AdminCustomersRouteChildren,
+)
+
+interface AdminDeliveryRouteChildren {
+  AdminDeliveryIdRoute: typeof AdminDeliveryIdRoute
+  AdminDeliveryNewRoute: typeof AdminDeliveryNewRoute
+}
+
+const AdminDeliveryRouteChildren: AdminDeliveryRouteChildren = {
+  AdminDeliveryIdRoute: AdminDeliveryIdRoute,
+  AdminDeliveryNewRoute: AdminDeliveryNewRoute,
+}
+
+const AdminDeliveryRouteWithChildren = AdminDeliveryRoute._addFileChildren(
+  AdminDeliveryRouteChildren,
+)
+
+interface AdminOrdersRouteChildren {
+  AdminOrdersIdRoute: typeof AdminOrdersIdRoute
+}
+
+const AdminOrdersRouteChildren: AdminOrdersRouteChildren = {
+  AdminOrdersIdRoute: AdminOrdersIdRoute,
+}
+
+const AdminOrdersRouteWithChildren = AdminOrdersRoute._addFileChildren(
+  AdminOrdersRouteChildren,
+)
+
+interface AdminProductsRouteChildren {
+  AdminProductsIdRoute: typeof AdminProductsIdRoute
+  AdminProductsNewRoute: typeof AdminProductsNewRoute
+}
+
+const AdminProductsRouteChildren: AdminProductsRouteChildren = {
+  AdminProductsIdRoute: AdminProductsIdRoute,
+  AdminProductsNewRoute: AdminProductsNewRoute,
+}
+
+const AdminProductsRouteWithChildren = AdminProductsRoute._addFileChildren(
+  AdminProductsRouteChildren,
+)
+
+interface AdminRouteChildren {
+  AdminCategoriesRoute: typeof AdminCategoriesRoute
+  AdminCustomersRoute: typeof AdminCustomersRouteWithChildren
+  AdminDeliveryRoute: typeof AdminDeliveryRouteWithChildren
+  AdminOrdersRoute: typeof AdminOrdersRouteWithChildren
+  AdminProductsRoute: typeof AdminProductsRouteWithChildren
+  AdminReportsRoute: typeof AdminReportsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminCategoriesRoute: AdminCategoriesRoute,
+  AdminCustomersRoute: AdminCustomersRouteWithChildren,
+  AdminDeliveryRoute: AdminDeliveryRouteWithChildren,
+  AdminOrdersRoute: AdminOrdersRouteWithChildren,
+  AdminProductsRoute: AdminProductsRouteWithChildren,
+  AdminReportsRoute: AdminReportsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface CustomerOrdersRouteChildren {
   CustomerOrdersIdRoute: typeof CustomerOrdersIdRoute
@@ -448,6 +787,7 @@ const CustomerOrdersRouteWithChildren = CustomerOrdersRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   CustomerAddAddressRoute: CustomerAddAddressRoute,
   CustomerAddressesRoute: CustomerAddressesRoute,
   CustomerCartRoute: CustomerCartRoute,
