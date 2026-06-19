@@ -9,38 +9,572 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhatsappRouteImport } from './routes/whatsapp'
+import { Route as DeliveryRouteImport } from './routes/delivery'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DeliveryIndexRouteImport } from './routes/delivery.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as DeliveryProfileRouteImport } from './routes/delivery.profile'
+import { Route as DeliveryOrdersRouteImport } from './routes/delivery.orders'
+import { Route as DeliveryHistoryRouteImport } from './routes/delivery.history'
+import { Route as CustomerWelcomeRouteImport } from './routes/customer.welcome'
+import { Route as CustomerSplashRouteImport } from './routes/customer.splash'
+import { Route as CustomerSearchRouteImport } from './routes/customer.search'
+import { Route as CustomerProfileRouteImport } from './routes/customer.profile'
+import { Route as CustomerOtpRouteImport } from './routes/customer.otp'
+import { Route as CustomerOrdersRouteImport } from './routes/customer.orders'
+import { Route as CustomerOrderSuccessRouteImport } from './routes/customer.order-success'
+import { Route as CustomerNotificationsRouteImport } from './routes/customer.notifications'
+import { Route as CustomerLoginRouteImport } from './routes/customer.login'
+import { Route as CustomerHomeRouteImport } from './routes/customer.home'
+import { Route as CustomerEditProfileRouteImport } from './routes/customer.edit-profile'
+import { Route as CustomerCheckoutRouteImport } from './routes/customer.checkout'
+import { Route as CustomerCategoriesRouteImport } from './routes/customer.categories'
+import { Route as CustomerCartRouteImport } from './routes/customer.cart'
+import { Route as CustomerAddressesRouteImport } from './routes/customer.addresses'
+import { Route as CustomerAddAddressRouteImport } from './routes/customer.add-address'
+import { Route as AdminReportsRouteImport } from './routes/admin.reports'
+import { Route as AdminProductsRouteImport } from './routes/admin.products'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminDeliveryRouteImport } from './routes/admin.delivery'
+import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
+import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
+import { Route as DeliveryOrderIdRouteImport } from './routes/delivery.order.$id'
+import { Route as DeliveryDeliveredIdRouteImport } from './routes/delivery.delivered.$id'
+import { Route as CustomerProductIdRouteImport } from './routes/customer.product.$id'
+import { Route as CustomerOrdersIdRouteImport } from './routes/customer.orders.$id'
+import { Route as CustomerCategoryIdRouteImport } from './routes/customer.category.$id'
+import { Route as AdminProductsNewRouteImport } from './routes/admin.products.new'
+import { Route as AdminProductsIdRouteImport } from './routes/admin.products.$id'
+import { Route as AdminOrdersIdRouteImport } from './routes/admin.orders.$id'
+import { Route as AdminDeliveryNewRouteImport } from './routes/admin.delivery.new'
+import { Route as AdminDeliveryIdRouteImport } from './routes/admin.delivery.$id'
+import { Route as AdminCustomersIdRouteImport } from './routes/admin.customers.$id'
 
+const WhatsappRoute = WhatsappRouteImport.update({
+  id: '/whatsapp',
+  path: '/whatsapp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeliveryRoute = DeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeliveryIndexRoute = DeliveryIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DeliveryRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const DeliveryProfileRoute = DeliveryProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DeliveryRoute,
+} as any)
+const DeliveryOrdersRoute = DeliveryOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => DeliveryRoute,
+} as any)
+const DeliveryHistoryRoute = DeliveryHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => DeliveryRoute,
+} as any)
+const CustomerWelcomeRoute = CustomerWelcomeRouteImport.update({
+  id: '/customer/welcome',
+  path: '/customer/welcome',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerSplashRoute = CustomerSplashRouteImport.update({
+  id: '/customer/splash',
+  path: '/customer/splash',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerSearchRoute = CustomerSearchRouteImport.update({
+  id: '/customer/search',
+  path: '/customer/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerProfileRoute = CustomerProfileRouteImport.update({
+  id: '/customer/profile',
+  path: '/customer/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerOtpRoute = CustomerOtpRouteImport.update({
+  id: '/customer/otp',
+  path: '/customer/otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerOrdersRoute = CustomerOrdersRouteImport.update({
+  id: '/customer/orders',
+  path: '/customer/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerOrderSuccessRoute = CustomerOrderSuccessRouteImport.update({
+  id: '/customer/order-success',
+  path: '/customer/order-success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerNotificationsRoute = CustomerNotificationsRouteImport.update({
+  id: '/customer/notifications',
+  path: '/customer/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerLoginRoute = CustomerLoginRouteImport.update({
+  id: '/customer/login',
+  path: '/customer/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerHomeRoute = CustomerHomeRouteImport.update({
+  id: '/customer/home',
+  path: '/customer/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerEditProfileRoute = CustomerEditProfileRouteImport.update({
+  id: '/customer/edit-profile',
+  path: '/customer/edit-profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerCheckoutRoute = CustomerCheckoutRouteImport.update({
+  id: '/customer/checkout',
+  path: '/customer/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerCategoriesRoute = CustomerCategoriesRouteImport.update({
+  id: '/customer/categories',
+  path: '/customer/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerCartRoute = CustomerCartRouteImport.update({
+  id: '/customer/cart',
+  path: '/customer/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerAddressesRoute = CustomerAddressesRouteImport.update({
+  id: '/customer/addresses',
+  path: '/customer/addresses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerAddAddressRoute = CustomerAddAddressRouteImport.update({
+  id: '/customer/add-address',
+  path: '/customer/add-address',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProductsRoute = AdminProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDeliveryRoute = AdminDeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCustomersRoute = AdminCustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => AdminRoute,
+} as any)
+const DeliveryOrderIdRoute = DeliveryOrderIdRouteImport.update({
+  id: '/order/$id',
+  path: '/order/$id',
+  getParentRoute: () => DeliveryRoute,
+} as any)
+const DeliveryDeliveredIdRoute = DeliveryDeliveredIdRouteImport.update({
+  id: '/delivered/$id',
+  path: '/delivered/$id',
+  getParentRoute: () => DeliveryRoute,
+} as any)
+const CustomerProductIdRoute = CustomerProductIdRouteImport.update({
+  id: '/customer/product/$id',
+  path: '/customer/product/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerOrdersIdRoute = CustomerOrdersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => CustomerOrdersRoute,
+} as any)
+const CustomerCategoryIdRoute = CustomerCategoryIdRouteImport.update({
+  id: '/customer/category/$id',
+  path: '/customer/category/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminProductsNewRoute = AdminProductsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminProductsRoute,
+} as any)
+const AdminProductsIdRoute = AdminProductsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminProductsRoute,
+} as any)
+const AdminOrdersIdRoute = AdminOrdersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminOrdersRoute,
+} as any)
+const AdminDeliveryNewRoute = AdminDeliveryNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminDeliveryRoute,
+} as any)
+const AdminDeliveryIdRoute = AdminDeliveryIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminDeliveryRoute,
+} as any)
+const AdminCustomersIdRoute = AdminCustomersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminCustomersRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/delivery': typeof DeliveryRouteWithChildren
+  '/whatsapp': typeof WhatsappRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/customers': typeof AdminCustomersRouteWithChildren
+  '/admin/delivery': typeof AdminDeliveryRouteWithChildren
+  '/admin/orders': typeof AdminOrdersRouteWithChildren
+  '/admin/products': typeof AdminProductsRouteWithChildren
+  '/admin/reports': typeof AdminReportsRoute
+  '/customer/add-address': typeof CustomerAddAddressRoute
+  '/customer/addresses': typeof CustomerAddressesRoute
+  '/customer/cart': typeof CustomerCartRoute
+  '/customer/categories': typeof CustomerCategoriesRoute
+  '/customer/checkout': typeof CustomerCheckoutRoute
+  '/customer/edit-profile': typeof CustomerEditProfileRoute
+  '/customer/home': typeof CustomerHomeRoute
+  '/customer/login': typeof CustomerLoginRoute
+  '/customer/notifications': typeof CustomerNotificationsRoute
+  '/customer/order-success': typeof CustomerOrderSuccessRoute
+  '/customer/orders': typeof CustomerOrdersRouteWithChildren
+  '/customer/otp': typeof CustomerOtpRoute
+  '/customer/profile': typeof CustomerProfileRoute
+  '/customer/search': typeof CustomerSearchRoute
+  '/customer/splash': typeof CustomerSplashRoute
+  '/customer/welcome': typeof CustomerWelcomeRoute
+  '/delivery/history': typeof DeliveryHistoryRoute
+  '/delivery/orders': typeof DeliveryOrdersRoute
+  '/delivery/profile': typeof DeliveryProfileRoute
+  '/admin/': typeof AdminIndexRoute
+  '/delivery/': typeof DeliveryIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
+  '/admin/delivery/$id': typeof AdminDeliveryIdRoute
+  '/admin/delivery/new': typeof AdminDeliveryNewRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/admin/products/$id': typeof AdminProductsIdRoute
+  '/admin/products/new': typeof AdminProductsNewRoute
+  '/customer/category/$id': typeof CustomerCategoryIdRoute
+  '/customer/orders/$id': typeof CustomerOrdersIdRoute
+  '/customer/product/$id': typeof CustomerProductIdRoute
+  '/delivery/delivered/$id': typeof DeliveryDeliveredIdRoute
+  '/delivery/order/$id': typeof DeliveryOrderIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/whatsapp': typeof WhatsappRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/customers': typeof AdminCustomersRouteWithChildren
+  '/admin/delivery': typeof AdminDeliveryRouteWithChildren
+  '/admin/orders': typeof AdminOrdersRouteWithChildren
+  '/admin/products': typeof AdminProductsRouteWithChildren
+  '/admin/reports': typeof AdminReportsRoute
+  '/customer/add-address': typeof CustomerAddAddressRoute
+  '/customer/addresses': typeof CustomerAddressesRoute
+  '/customer/cart': typeof CustomerCartRoute
+  '/customer/categories': typeof CustomerCategoriesRoute
+  '/customer/checkout': typeof CustomerCheckoutRoute
+  '/customer/edit-profile': typeof CustomerEditProfileRoute
+  '/customer/home': typeof CustomerHomeRoute
+  '/customer/login': typeof CustomerLoginRoute
+  '/customer/notifications': typeof CustomerNotificationsRoute
+  '/customer/order-success': typeof CustomerOrderSuccessRoute
+  '/customer/orders': typeof CustomerOrdersRouteWithChildren
+  '/customer/otp': typeof CustomerOtpRoute
+  '/customer/profile': typeof CustomerProfileRoute
+  '/customer/search': typeof CustomerSearchRoute
+  '/customer/splash': typeof CustomerSplashRoute
+  '/customer/welcome': typeof CustomerWelcomeRoute
+  '/delivery/history': typeof DeliveryHistoryRoute
+  '/delivery/orders': typeof DeliveryOrdersRoute
+  '/delivery/profile': typeof DeliveryProfileRoute
+  '/admin': typeof AdminIndexRoute
+  '/delivery': typeof DeliveryIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
+  '/admin/delivery/$id': typeof AdminDeliveryIdRoute
+  '/admin/delivery/new': typeof AdminDeliveryNewRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/admin/products/$id': typeof AdminProductsIdRoute
+  '/admin/products/new': typeof AdminProductsNewRoute
+  '/customer/category/$id': typeof CustomerCategoryIdRoute
+  '/customer/orders/$id': typeof CustomerOrdersIdRoute
+  '/customer/product/$id': typeof CustomerProductIdRoute
+  '/delivery/delivered/$id': typeof DeliveryDeliveredIdRoute
+  '/delivery/order/$id': typeof DeliveryOrderIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/delivery': typeof DeliveryRouteWithChildren
+  '/whatsapp': typeof WhatsappRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/customers': typeof AdminCustomersRouteWithChildren
+  '/admin/delivery': typeof AdminDeliveryRouteWithChildren
+  '/admin/orders': typeof AdminOrdersRouteWithChildren
+  '/admin/products': typeof AdminProductsRouteWithChildren
+  '/admin/reports': typeof AdminReportsRoute
+  '/customer/add-address': typeof CustomerAddAddressRoute
+  '/customer/addresses': typeof CustomerAddressesRoute
+  '/customer/cart': typeof CustomerCartRoute
+  '/customer/categories': typeof CustomerCategoriesRoute
+  '/customer/checkout': typeof CustomerCheckoutRoute
+  '/customer/edit-profile': typeof CustomerEditProfileRoute
+  '/customer/home': typeof CustomerHomeRoute
+  '/customer/login': typeof CustomerLoginRoute
+  '/customer/notifications': typeof CustomerNotificationsRoute
+  '/customer/order-success': typeof CustomerOrderSuccessRoute
+  '/customer/orders': typeof CustomerOrdersRouteWithChildren
+  '/customer/otp': typeof CustomerOtpRoute
+  '/customer/profile': typeof CustomerProfileRoute
+  '/customer/search': typeof CustomerSearchRoute
+  '/customer/splash': typeof CustomerSplashRoute
+  '/customer/welcome': typeof CustomerWelcomeRoute
+  '/delivery/history': typeof DeliveryHistoryRoute
+  '/delivery/orders': typeof DeliveryOrdersRoute
+  '/delivery/profile': typeof DeliveryProfileRoute
+  '/admin/': typeof AdminIndexRoute
+  '/delivery/': typeof DeliveryIndexRoute
+  '/admin/customers/$id': typeof AdminCustomersIdRoute
+  '/admin/delivery/$id': typeof AdminDeliveryIdRoute
+  '/admin/delivery/new': typeof AdminDeliveryNewRoute
+  '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/admin/products/$id': typeof AdminProductsIdRoute
+  '/admin/products/new': typeof AdminProductsNewRoute
+  '/customer/category/$id': typeof CustomerCategoryIdRoute
+  '/customer/orders/$id': typeof CustomerOrdersIdRoute
+  '/customer/product/$id': typeof CustomerProductIdRoute
+  '/delivery/delivered/$id': typeof DeliveryDeliveredIdRoute
+  '/delivery/order/$id': typeof DeliveryOrderIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/delivery'
+    | '/whatsapp'
+    | '/admin/categories'
+    | '/admin/customers'
+    | '/admin/delivery'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/reports'
+    | '/customer/add-address'
+    | '/customer/addresses'
+    | '/customer/cart'
+    | '/customer/categories'
+    | '/customer/checkout'
+    | '/customer/edit-profile'
+    | '/customer/home'
+    | '/customer/login'
+    | '/customer/notifications'
+    | '/customer/order-success'
+    | '/customer/orders'
+    | '/customer/otp'
+    | '/customer/profile'
+    | '/customer/search'
+    | '/customer/splash'
+    | '/customer/welcome'
+    | '/delivery/history'
+    | '/delivery/orders'
+    | '/delivery/profile'
+    | '/admin/'
+    | '/delivery/'
+    | '/admin/customers/$id'
+    | '/admin/delivery/$id'
+    | '/admin/delivery/new'
+    | '/admin/orders/$id'
+    | '/admin/products/$id'
+    | '/admin/products/new'
+    | '/customer/category/$id'
+    | '/customer/orders/$id'
+    | '/customer/product/$id'
+    | '/delivery/delivered/$id'
+    | '/delivery/order/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/whatsapp'
+    | '/admin/categories'
+    | '/admin/customers'
+    | '/admin/delivery'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/reports'
+    | '/customer/add-address'
+    | '/customer/addresses'
+    | '/customer/cart'
+    | '/customer/categories'
+    | '/customer/checkout'
+    | '/customer/edit-profile'
+    | '/customer/home'
+    | '/customer/login'
+    | '/customer/notifications'
+    | '/customer/order-success'
+    | '/customer/orders'
+    | '/customer/otp'
+    | '/customer/profile'
+    | '/customer/search'
+    | '/customer/splash'
+    | '/customer/welcome'
+    | '/delivery/history'
+    | '/delivery/orders'
+    | '/delivery/profile'
+    | '/admin'
+    | '/delivery'
+    | '/admin/customers/$id'
+    | '/admin/delivery/$id'
+    | '/admin/delivery/new'
+    | '/admin/orders/$id'
+    | '/admin/products/$id'
+    | '/admin/products/new'
+    | '/customer/category/$id'
+    | '/customer/orders/$id'
+    | '/customer/product/$id'
+    | '/delivery/delivered/$id'
+    | '/delivery/order/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/delivery'
+    | '/whatsapp'
+    | '/admin/categories'
+    | '/admin/customers'
+    | '/admin/delivery'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/reports'
+    | '/customer/add-address'
+    | '/customer/addresses'
+    | '/customer/cart'
+    | '/customer/categories'
+    | '/customer/checkout'
+    | '/customer/edit-profile'
+    | '/customer/home'
+    | '/customer/login'
+    | '/customer/notifications'
+    | '/customer/order-success'
+    | '/customer/orders'
+    | '/customer/otp'
+    | '/customer/profile'
+    | '/customer/search'
+    | '/customer/splash'
+    | '/customer/welcome'
+    | '/delivery/history'
+    | '/delivery/orders'
+    | '/delivery/profile'
+    | '/admin/'
+    | '/delivery/'
+    | '/admin/customers/$id'
+    | '/admin/delivery/$id'
+    | '/admin/delivery/new'
+    | '/admin/orders/$id'
+    | '/admin/products/$id'
+    | '/admin/products/new'
+    | '/customer/category/$id'
+    | '/customer/orders/$id'
+    | '/customer/product/$id'
+    | '/delivery/delivered/$id'
+    | '/delivery/order/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  DeliveryRoute: typeof DeliveryRouteWithChildren
+  WhatsappRoute: typeof WhatsappRoute
+  CustomerAddAddressRoute: typeof CustomerAddAddressRoute
+  CustomerAddressesRoute: typeof CustomerAddressesRoute
+  CustomerCartRoute: typeof CustomerCartRoute
+  CustomerCategoriesRoute: typeof CustomerCategoriesRoute
+  CustomerCheckoutRoute: typeof CustomerCheckoutRoute
+  CustomerEditProfileRoute: typeof CustomerEditProfileRoute
+  CustomerHomeRoute: typeof CustomerHomeRoute
+  CustomerLoginRoute: typeof CustomerLoginRoute
+  CustomerNotificationsRoute: typeof CustomerNotificationsRoute
+  CustomerOrderSuccessRoute: typeof CustomerOrderSuccessRoute
+  CustomerOrdersRoute: typeof CustomerOrdersRouteWithChildren
+  CustomerOtpRoute: typeof CustomerOtpRoute
+  CustomerProfileRoute: typeof CustomerProfileRoute
+  CustomerSearchRoute: typeof CustomerSearchRoute
+  CustomerSplashRoute: typeof CustomerSplashRoute
+  CustomerWelcomeRoute: typeof CustomerWelcomeRoute
+  CustomerCategoryIdRoute: typeof CustomerCategoryIdRoute
+  CustomerProductIdRoute: typeof CustomerProductIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/whatsapp': {
+      id: '/whatsapp'
+      path: '/whatsapp'
+      fullPath: '/whatsapp'
+      preLoaderRoute: typeof WhatsappRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/delivery': {
+      id: '/delivery'
+      path: '/delivery'
+      fullPath: '/delivery'
+      preLoaderRoute: typeof DeliveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +582,407 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/delivery/': {
+      id: '/delivery/'
+      path: '/'
+      fullPath: '/delivery/'
+      preLoaderRoute: typeof DeliveryIndexRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/delivery/profile': {
+      id: '/delivery/profile'
+      path: '/profile'
+      fullPath: '/delivery/profile'
+      preLoaderRoute: typeof DeliveryProfileRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
+    '/delivery/orders': {
+      id: '/delivery/orders'
+      path: '/orders'
+      fullPath: '/delivery/orders'
+      preLoaderRoute: typeof DeliveryOrdersRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
+    '/delivery/history': {
+      id: '/delivery/history'
+      path: '/history'
+      fullPath: '/delivery/history'
+      preLoaderRoute: typeof DeliveryHistoryRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
+    '/customer/welcome': {
+      id: '/customer/welcome'
+      path: '/customer/welcome'
+      fullPath: '/customer/welcome'
+      preLoaderRoute: typeof CustomerWelcomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/splash': {
+      id: '/customer/splash'
+      path: '/customer/splash'
+      fullPath: '/customer/splash'
+      preLoaderRoute: typeof CustomerSplashRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/search': {
+      id: '/customer/search'
+      path: '/customer/search'
+      fullPath: '/customer/search'
+      preLoaderRoute: typeof CustomerSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/profile': {
+      id: '/customer/profile'
+      path: '/customer/profile'
+      fullPath: '/customer/profile'
+      preLoaderRoute: typeof CustomerProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/otp': {
+      id: '/customer/otp'
+      path: '/customer/otp'
+      fullPath: '/customer/otp'
+      preLoaderRoute: typeof CustomerOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/orders': {
+      id: '/customer/orders'
+      path: '/customer/orders'
+      fullPath: '/customer/orders'
+      preLoaderRoute: typeof CustomerOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/order-success': {
+      id: '/customer/order-success'
+      path: '/customer/order-success'
+      fullPath: '/customer/order-success'
+      preLoaderRoute: typeof CustomerOrderSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/notifications': {
+      id: '/customer/notifications'
+      path: '/customer/notifications'
+      fullPath: '/customer/notifications'
+      preLoaderRoute: typeof CustomerNotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/login': {
+      id: '/customer/login'
+      path: '/customer/login'
+      fullPath: '/customer/login'
+      preLoaderRoute: typeof CustomerLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/home': {
+      id: '/customer/home'
+      path: '/customer/home'
+      fullPath: '/customer/home'
+      preLoaderRoute: typeof CustomerHomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/edit-profile': {
+      id: '/customer/edit-profile'
+      path: '/customer/edit-profile'
+      fullPath: '/customer/edit-profile'
+      preLoaderRoute: typeof CustomerEditProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/checkout': {
+      id: '/customer/checkout'
+      path: '/customer/checkout'
+      fullPath: '/customer/checkout'
+      preLoaderRoute: typeof CustomerCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/categories': {
+      id: '/customer/categories'
+      path: '/customer/categories'
+      fullPath: '/customer/categories'
+      preLoaderRoute: typeof CustomerCategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/cart': {
+      id: '/customer/cart'
+      path: '/customer/cart'
+      fullPath: '/customer/cart'
+      preLoaderRoute: typeof CustomerCartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/addresses': {
+      id: '/customer/addresses'
+      path: '/customer/addresses'
+      fullPath: '/customer/addresses'
+      preLoaderRoute: typeof CustomerAddressesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/add-address': {
+      id: '/customer/add-address'
+      path: '/customer/add-address'
+      fullPath: '/customer/add-address'
+      preLoaderRoute: typeof CustomerAddAddressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/reports': {
+      id: '/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/products': {
+      id: '/admin/products'
+      path: '/products'
+      fullPath: '/admin/products'
+      preLoaderRoute: typeof AdminProductsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/delivery': {
+      id: '/admin/delivery'
+      path: '/delivery'
+      fullPath: '/admin/delivery'
+      preLoaderRoute: typeof AdminDeliveryRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/customers': {
+      id: '/admin/customers'
+      path: '/customers'
+      fullPath: '/admin/customers'
+      preLoaderRoute: typeof AdminCustomersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/categories': {
+      id: '/admin/categories'
+      path: '/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AdminCategoriesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/delivery/order/$id': {
+      id: '/delivery/order/$id'
+      path: '/order/$id'
+      fullPath: '/delivery/order/$id'
+      preLoaderRoute: typeof DeliveryOrderIdRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
+    '/delivery/delivered/$id': {
+      id: '/delivery/delivered/$id'
+      path: '/delivered/$id'
+      fullPath: '/delivery/delivered/$id'
+      preLoaderRoute: typeof DeliveryDeliveredIdRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
+    '/customer/product/$id': {
+      id: '/customer/product/$id'
+      path: '/customer/product/$id'
+      fullPath: '/customer/product/$id'
+      preLoaderRoute: typeof CustomerProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/orders/$id': {
+      id: '/customer/orders/$id'
+      path: '/$id'
+      fullPath: '/customer/orders/$id'
+      preLoaderRoute: typeof CustomerOrdersIdRouteImport
+      parentRoute: typeof CustomerOrdersRoute
+    }
+    '/customer/category/$id': {
+      id: '/customer/category/$id'
+      path: '/customer/category/$id'
+      fullPath: '/customer/category/$id'
+      preLoaderRoute: typeof CustomerCategoryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/products/new': {
+      id: '/admin/products/new'
+      path: '/new'
+      fullPath: '/admin/products/new'
+      preLoaderRoute: typeof AdminProductsNewRouteImport
+      parentRoute: typeof AdminProductsRoute
+    }
+    '/admin/products/$id': {
+      id: '/admin/products/$id'
+      path: '/$id'
+      fullPath: '/admin/products/$id'
+      preLoaderRoute: typeof AdminProductsIdRouteImport
+      parentRoute: typeof AdminProductsRoute
+    }
+    '/admin/orders/$id': {
+      id: '/admin/orders/$id'
+      path: '/$id'
+      fullPath: '/admin/orders/$id'
+      preLoaderRoute: typeof AdminOrdersIdRouteImport
+      parentRoute: typeof AdminOrdersRoute
+    }
+    '/admin/delivery/new': {
+      id: '/admin/delivery/new'
+      path: '/new'
+      fullPath: '/admin/delivery/new'
+      preLoaderRoute: typeof AdminDeliveryNewRouteImport
+      parentRoute: typeof AdminDeliveryRoute
+    }
+    '/admin/delivery/$id': {
+      id: '/admin/delivery/$id'
+      path: '/$id'
+      fullPath: '/admin/delivery/$id'
+      preLoaderRoute: typeof AdminDeliveryIdRouteImport
+      parentRoute: typeof AdminDeliveryRoute
+    }
+    '/admin/customers/$id': {
+      id: '/admin/customers/$id'
+      path: '/$id'
+      fullPath: '/admin/customers/$id'
+      preLoaderRoute: typeof AdminCustomersIdRouteImport
+      parentRoute: typeof AdminCustomersRoute
+    }
   }
 }
 
+interface AdminCustomersRouteChildren {
+  AdminCustomersIdRoute: typeof AdminCustomersIdRoute
+}
+
+const AdminCustomersRouteChildren: AdminCustomersRouteChildren = {
+  AdminCustomersIdRoute: AdminCustomersIdRoute,
+}
+
+const AdminCustomersRouteWithChildren = AdminCustomersRoute._addFileChildren(
+  AdminCustomersRouteChildren,
+)
+
+interface AdminDeliveryRouteChildren {
+  AdminDeliveryIdRoute: typeof AdminDeliveryIdRoute
+  AdminDeliveryNewRoute: typeof AdminDeliveryNewRoute
+}
+
+const AdminDeliveryRouteChildren: AdminDeliveryRouteChildren = {
+  AdminDeliveryIdRoute: AdminDeliveryIdRoute,
+  AdminDeliveryNewRoute: AdminDeliveryNewRoute,
+}
+
+const AdminDeliveryRouteWithChildren = AdminDeliveryRoute._addFileChildren(
+  AdminDeliveryRouteChildren,
+)
+
+interface AdminOrdersRouteChildren {
+  AdminOrdersIdRoute: typeof AdminOrdersIdRoute
+}
+
+const AdminOrdersRouteChildren: AdminOrdersRouteChildren = {
+  AdminOrdersIdRoute: AdminOrdersIdRoute,
+}
+
+const AdminOrdersRouteWithChildren = AdminOrdersRoute._addFileChildren(
+  AdminOrdersRouteChildren,
+)
+
+interface AdminProductsRouteChildren {
+  AdminProductsIdRoute: typeof AdminProductsIdRoute
+  AdminProductsNewRoute: typeof AdminProductsNewRoute
+}
+
+const AdminProductsRouteChildren: AdminProductsRouteChildren = {
+  AdminProductsIdRoute: AdminProductsIdRoute,
+  AdminProductsNewRoute: AdminProductsNewRoute,
+}
+
+const AdminProductsRouteWithChildren = AdminProductsRoute._addFileChildren(
+  AdminProductsRouteChildren,
+)
+
+interface AdminRouteChildren {
+  AdminCategoriesRoute: typeof AdminCategoriesRoute
+  AdminCustomersRoute: typeof AdminCustomersRouteWithChildren
+  AdminDeliveryRoute: typeof AdminDeliveryRouteWithChildren
+  AdminOrdersRoute: typeof AdminOrdersRouteWithChildren
+  AdminProductsRoute: typeof AdminProductsRouteWithChildren
+  AdminReportsRoute: typeof AdminReportsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminCategoriesRoute: AdminCategoriesRoute,
+  AdminCustomersRoute: AdminCustomersRouteWithChildren,
+  AdminDeliveryRoute: AdminDeliveryRouteWithChildren,
+  AdminOrdersRoute: AdminOrdersRouteWithChildren,
+  AdminProductsRoute: AdminProductsRouteWithChildren,
+  AdminReportsRoute: AdminReportsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface DeliveryRouteChildren {
+  DeliveryHistoryRoute: typeof DeliveryHistoryRoute
+  DeliveryOrdersRoute: typeof DeliveryOrdersRoute
+  DeliveryProfileRoute: typeof DeliveryProfileRoute
+  DeliveryIndexRoute: typeof DeliveryIndexRoute
+  DeliveryDeliveredIdRoute: typeof DeliveryDeliveredIdRoute
+  DeliveryOrderIdRoute: typeof DeliveryOrderIdRoute
+}
+
+const DeliveryRouteChildren: DeliveryRouteChildren = {
+  DeliveryHistoryRoute: DeliveryHistoryRoute,
+  DeliveryOrdersRoute: DeliveryOrdersRoute,
+  DeliveryProfileRoute: DeliveryProfileRoute,
+  DeliveryIndexRoute: DeliveryIndexRoute,
+  DeliveryDeliveredIdRoute: DeliveryDeliveredIdRoute,
+  DeliveryOrderIdRoute: DeliveryOrderIdRoute,
+}
+
+const DeliveryRouteWithChildren = DeliveryRoute._addFileChildren(
+  DeliveryRouteChildren,
+)
+
+interface CustomerOrdersRouteChildren {
+  CustomerOrdersIdRoute: typeof CustomerOrdersIdRoute
+}
+
+const CustomerOrdersRouteChildren: CustomerOrdersRouteChildren = {
+  CustomerOrdersIdRoute: CustomerOrdersIdRoute,
+}
+
+const CustomerOrdersRouteWithChildren = CustomerOrdersRoute._addFileChildren(
+  CustomerOrdersRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  DeliveryRoute: DeliveryRouteWithChildren,
+  WhatsappRoute: WhatsappRoute,
+  CustomerAddAddressRoute: CustomerAddAddressRoute,
+  CustomerAddressesRoute: CustomerAddressesRoute,
+  CustomerCartRoute: CustomerCartRoute,
+  CustomerCategoriesRoute: CustomerCategoriesRoute,
+  CustomerCheckoutRoute: CustomerCheckoutRoute,
+  CustomerEditProfileRoute: CustomerEditProfileRoute,
+  CustomerHomeRoute: CustomerHomeRoute,
+  CustomerLoginRoute: CustomerLoginRoute,
+  CustomerNotificationsRoute: CustomerNotificationsRoute,
+  CustomerOrderSuccessRoute: CustomerOrderSuccessRoute,
+  CustomerOrdersRoute: CustomerOrdersRouteWithChildren,
+  CustomerOtpRoute: CustomerOtpRoute,
+  CustomerProfileRoute: CustomerProfileRoute,
+  CustomerSearchRoute: CustomerSearchRoute,
+  CustomerSplashRoute: CustomerSplashRoute,
+  CustomerWelcomeRoute: CustomerWelcomeRoute,
+  CustomerCategoryIdRoute: CustomerCategoryIdRoute,
+  CustomerProductIdRoute: CustomerProductIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
