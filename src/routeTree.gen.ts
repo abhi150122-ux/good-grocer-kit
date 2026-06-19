@@ -10,33 +10,89 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CustomerWelcomeRouteImport } from './routes/customer.welcome'
+import { Route as CustomerSplashRouteImport } from './routes/customer.splash'
+import { Route as CustomerOtpRouteImport } from './routes/customer.otp'
+import { Route as CustomerLoginRouteImport } from './routes/customer.login'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CustomerWelcomeRoute = CustomerWelcomeRouteImport.update({
+  id: '/customer/welcome',
+  path: '/customer/welcome',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerSplashRoute = CustomerSplashRouteImport.update({
+  id: '/customer/splash',
+  path: '/customer/splash',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerOtpRoute = CustomerOtpRouteImport.update({
+  id: '/customer/otp',
+  path: '/customer/otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerLoginRoute = CustomerLoginRouteImport.update({
+  id: '/customer/login',
+  path: '/customer/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/customer/login': typeof CustomerLoginRoute
+  '/customer/otp': typeof CustomerOtpRoute
+  '/customer/splash': typeof CustomerSplashRoute
+  '/customer/welcome': typeof CustomerWelcomeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/customer/login': typeof CustomerLoginRoute
+  '/customer/otp': typeof CustomerOtpRoute
+  '/customer/splash': typeof CustomerSplashRoute
+  '/customer/welcome': typeof CustomerWelcomeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/customer/login': typeof CustomerLoginRoute
+  '/customer/otp': typeof CustomerOtpRoute
+  '/customer/splash': typeof CustomerSplashRoute
+  '/customer/welcome': typeof CustomerWelcomeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/customer/login'
+    | '/customer/otp'
+    | '/customer/splash'
+    | '/customer/welcome'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/customer/login'
+    | '/customer/otp'
+    | '/customer/splash'
+    | '/customer/welcome'
+  id:
+    | '__root__'
+    | '/'
+    | '/customer/login'
+    | '/customer/otp'
+    | '/customer/splash'
+    | '/customer/welcome'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CustomerLoginRoute: typeof CustomerLoginRoute
+  CustomerOtpRoute: typeof CustomerOtpRoute
+  CustomerSplashRoute: typeof CustomerSplashRoute
+  CustomerWelcomeRoute: typeof CustomerWelcomeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +104,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/customer/welcome': {
+      id: '/customer/welcome'
+      path: '/customer/welcome'
+      fullPath: '/customer/welcome'
+      preLoaderRoute: typeof CustomerWelcomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/splash': {
+      id: '/customer/splash'
+      path: '/customer/splash'
+      fullPath: '/customer/splash'
+      preLoaderRoute: typeof CustomerSplashRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/otp': {
+      id: '/customer/otp'
+      path: '/customer/otp'
+      fullPath: '/customer/otp'
+      preLoaderRoute: typeof CustomerOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/login': {
+      id: '/customer/login'
+      path: '/customer/login'
+      fullPath: '/customer/login'
+      preLoaderRoute: typeof CustomerLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CustomerLoginRoute: CustomerLoginRoute,
+  CustomerOtpRoute: CustomerOtpRoute,
+  CustomerSplashRoute: CustomerSplashRoute,
+  CustomerWelcomeRoute: CustomerWelcomeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
