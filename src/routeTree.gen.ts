@@ -12,8 +12,23 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CustomerWelcomeRouteImport } from './routes/customer.welcome'
 import { Route as CustomerSplashRouteImport } from './routes/customer.splash'
+import { Route as CustomerSearchRouteImport } from './routes/customer.search'
+import { Route as CustomerProfileRouteImport } from './routes/customer.profile'
 import { Route as CustomerOtpRouteImport } from './routes/customer.otp'
+import { Route as CustomerOrdersRouteImport } from './routes/customer.orders'
+import { Route as CustomerOrderSuccessRouteImport } from './routes/customer.order-success'
+import { Route as CustomerNotificationsRouteImport } from './routes/customer.notifications'
 import { Route as CustomerLoginRouteImport } from './routes/customer.login'
+import { Route as CustomerHomeRouteImport } from './routes/customer.home'
+import { Route as CustomerEditProfileRouteImport } from './routes/customer.edit-profile'
+import { Route as CustomerCheckoutRouteImport } from './routes/customer.checkout'
+import { Route as CustomerCategoriesRouteImport } from './routes/customer.categories'
+import { Route as CustomerCartRouteImport } from './routes/customer.cart'
+import { Route as CustomerAddressesRouteImport } from './routes/customer.addresses'
+import { Route as CustomerAddAddressRouteImport } from './routes/customer.add-address'
+import { Route as CustomerProductIdRouteImport } from './routes/customer.product.$id'
+import { Route as CustomerOrdersIdRouteImport } from './routes/customer.orders.$id'
+import { Route as CustomerCategoryIdRouteImport } from './routes/customer.category.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,9 +45,34 @@ const CustomerSplashRoute = CustomerSplashRouteImport.update({
   path: '/customer/splash',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CustomerSearchRoute = CustomerSearchRouteImport.update({
+  id: '/customer/search',
+  path: '/customer/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerProfileRoute = CustomerProfileRouteImport.update({
+  id: '/customer/profile',
+  path: '/customer/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CustomerOtpRoute = CustomerOtpRouteImport.update({
   id: '/customer/otp',
   path: '/customer/otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerOrdersRoute = CustomerOrdersRouteImport.update({
+  id: '/customer/orders',
+  path: '/customer/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerOrderSuccessRoute = CustomerOrderSuccessRouteImport.update({
+  id: '/customer/order-success',
+  path: '/customer/order-success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerNotificationsRoute = CustomerNotificationsRouteImport.update({
+  id: '/customer/notifications',
+  path: '/customer/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CustomerLoginRoute = CustomerLoginRouteImport.update({
@@ -40,59 +80,213 @@ const CustomerLoginRoute = CustomerLoginRouteImport.update({
   path: '/customer/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CustomerHomeRoute = CustomerHomeRouteImport.update({
+  id: '/customer/home',
+  path: '/customer/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerEditProfileRoute = CustomerEditProfileRouteImport.update({
+  id: '/customer/edit-profile',
+  path: '/customer/edit-profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerCheckoutRoute = CustomerCheckoutRouteImport.update({
+  id: '/customer/checkout',
+  path: '/customer/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerCategoriesRoute = CustomerCategoriesRouteImport.update({
+  id: '/customer/categories',
+  path: '/customer/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerCartRoute = CustomerCartRouteImport.update({
+  id: '/customer/cart',
+  path: '/customer/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerAddressesRoute = CustomerAddressesRouteImport.update({
+  id: '/customer/addresses',
+  path: '/customer/addresses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerAddAddressRoute = CustomerAddAddressRouteImport.update({
+  id: '/customer/add-address',
+  path: '/customer/add-address',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerProductIdRoute = CustomerProductIdRouteImport.update({
+  id: '/customer/product/$id',
+  path: '/customer/product/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerOrdersIdRoute = CustomerOrdersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => CustomerOrdersRoute,
+} as any)
+const CustomerCategoryIdRoute = CustomerCategoryIdRouteImport.update({
+  id: '/customer/category/$id',
+  path: '/customer/category/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/customer/add-address': typeof CustomerAddAddressRoute
+  '/customer/addresses': typeof CustomerAddressesRoute
+  '/customer/cart': typeof CustomerCartRoute
+  '/customer/categories': typeof CustomerCategoriesRoute
+  '/customer/checkout': typeof CustomerCheckoutRoute
+  '/customer/edit-profile': typeof CustomerEditProfileRoute
+  '/customer/home': typeof CustomerHomeRoute
   '/customer/login': typeof CustomerLoginRoute
+  '/customer/notifications': typeof CustomerNotificationsRoute
+  '/customer/order-success': typeof CustomerOrderSuccessRoute
+  '/customer/orders': typeof CustomerOrdersRouteWithChildren
   '/customer/otp': typeof CustomerOtpRoute
+  '/customer/profile': typeof CustomerProfileRoute
+  '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/customer/category/$id': typeof CustomerCategoryIdRoute
+  '/customer/orders/$id': typeof CustomerOrdersIdRoute
+  '/customer/product/$id': typeof CustomerProductIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/customer/add-address': typeof CustomerAddAddressRoute
+  '/customer/addresses': typeof CustomerAddressesRoute
+  '/customer/cart': typeof CustomerCartRoute
+  '/customer/categories': typeof CustomerCategoriesRoute
+  '/customer/checkout': typeof CustomerCheckoutRoute
+  '/customer/edit-profile': typeof CustomerEditProfileRoute
+  '/customer/home': typeof CustomerHomeRoute
   '/customer/login': typeof CustomerLoginRoute
+  '/customer/notifications': typeof CustomerNotificationsRoute
+  '/customer/order-success': typeof CustomerOrderSuccessRoute
+  '/customer/orders': typeof CustomerOrdersRouteWithChildren
   '/customer/otp': typeof CustomerOtpRoute
+  '/customer/profile': typeof CustomerProfileRoute
+  '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/customer/category/$id': typeof CustomerCategoryIdRoute
+  '/customer/orders/$id': typeof CustomerOrdersIdRoute
+  '/customer/product/$id': typeof CustomerProductIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/customer/add-address': typeof CustomerAddAddressRoute
+  '/customer/addresses': typeof CustomerAddressesRoute
+  '/customer/cart': typeof CustomerCartRoute
+  '/customer/categories': typeof CustomerCategoriesRoute
+  '/customer/checkout': typeof CustomerCheckoutRoute
+  '/customer/edit-profile': typeof CustomerEditProfileRoute
+  '/customer/home': typeof CustomerHomeRoute
   '/customer/login': typeof CustomerLoginRoute
+  '/customer/notifications': typeof CustomerNotificationsRoute
+  '/customer/order-success': typeof CustomerOrderSuccessRoute
+  '/customer/orders': typeof CustomerOrdersRouteWithChildren
   '/customer/otp': typeof CustomerOtpRoute
+  '/customer/profile': typeof CustomerProfileRoute
+  '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/customer/category/$id': typeof CustomerCategoryIdRoute
+  '/customer/orders/$id': typeof CustomerOrdersIdRoute
+  '/customer/product/$id': typeof CustomerProductIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/customer/add-address'
+    | '/customer/addresses'
+    | '/customer/cart'
+    | '/customer/categories'
+    | '/customer/checkout'
+    | '/customer/edit-profile'
+    | '/customer/home'
     | '/customer/login'
+    | '/customer/notifications'
+    | '/customer/order-success'
+    | '/customer/orders'
     | '/customer/otp'
+    | '/customer/profile'
+    | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/customer/category/$id'
+    | '/customer/orders/$id'
+    | '/customer/product/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/customer/add-address'
+    | '/customer/addresses'
+    | '/customer/cart'
+    | '/customer/categories'
+    | '/customer/checkout'
+    | '/customer/edit-profile'
+    | '/customer/home'
     | '/customer/login'
+    | '/customer/notifications'
+    | '/customer/order-success'
+    | '/customer/orders'
     | '/customer/otp'
+    | '/customer/profile'
+    | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/customer/category/$id'
+    | '/customer/orders/$id'
+    | '/customer/product/$id'
   id:
     | '__root__'
     | '/'
+    | '/customer/add-address'
+    | '/customer/addresses'
+    | '/customer/cart'
+    | '/customer/categories'
+    | '/customer/checkout'
+    | '/customer/edit-profile'
+    | '/customer/home'
     | '/customer/login'
+    | '/customer/notifications'
+    | '/customer/order-success'
+    | '/customer/orders'
     | '/customer/otp'
+    | '/customer/profile'
+    | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/customer/category/$id'
+    | '/customer/orders/$id'
+    | '/customer/product/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CustomerAddAddressRoute: typeof CustomerAddAddressRoute
+  CustomerAddressesRoute: typeof CustomerAddressesRoute
+  CustomerCartRoute: typeof CustomerCartRoute
+  CustomerCategoriesRoute: typeof CustomerCategoriesRoute
+  CustomerCheckoutRoute: typeof CustomerCheckoutRoute
+  CustomerEditProfileRoute: typeof CustomerEditProfileRoute
+  CustomerHomeRoute: typeof CustomerHomeRoute
   CustomerLoginRoute: typeof CustomerLoginRoute
+  CustomerNotificationsRoute: typeof CustomerNotificationsRoute
+  CustomerOrderSuccessRoute: typeof CustomerOrderSuccessRoute
+  CustomerOrdersRoute: typeof CustomerOrdersRouteWithChildren
   CustomerOtpRoute: typeof CustomerOtpRoute
+  CustomerProfileRoute: typeof CustomerProfileRoute
+  CustomerSearchRoute: typeof CustomerSearchRoute
   CustomerSplashRoute: typeof CustomerSplashRoute
   CustomerWelcomeRoute: typeof CustomerWelcomeRoute
+  CustomerCategoryIdRoute: typeof CustomerCategoryIdRoute
+  CustomerProductIdRoute: typeof CustomerProductIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -118,11 +312,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomerSplashRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/customer/search': {
+      id: '/customer/search'
+      path: '/customer/search'
+      fullPath: '/customer/search'
+      preLoaderRoute: typeof CustomerSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/profile': {
+      id: '/customer/profile'
+      path: '/customer/profile'
+      fullPath: '/customer/profile'
+      preLoaderRoute: typeof CustomerProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/customer/otp': {
       id: '/customer/otp'
       path: '/customer/otp'
       fullPath: '/customer/otp'
       preLoaderRoute: typeof CustomerOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/orders': {
+      id: '/customer/orders'
+      path: '/customer/orders'
+      fullPath: '/customer/orders'
+      preLoaderRoute: typeof CustomerOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/order-success': {
+      id: '/customer/order-success'
+      path: '/customer/order-success'
+      fullPath: '/customer/order-success'
+      preLoaderRoute: typeof CustomerOrderSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/notifications': {
+      id: '/customer/notifications'
+      path: '/customer/notifications'
+      fullPath: '/customer/notifications'
+      preLoaderRoute: typeof CustomerNotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/customer/login': {
@@ -132,15 +361,111 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomerLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/customer/home': {
+      id: '/customer/home'
+      path: '/customer/home'
+      fullPath: '/customer/home'
+      preLoaderRoute: typeof CustomerHomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/edit-profile': {
+      id: '/customer/edit-profile'
+      path: '/customer/edit-profile'
+      fullPath: '/customer/edit-profile'
+      preLoaderRoute: typeof CustomerEditProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/checkout': {
+      id: '/customer/checkout'
+      path: '/customer/checkout'
+      fullPath: '/customer/checkout'
+      preLoaderRoute: typeof CustomerCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/categories': {
+      id: '/customer/categories'
+      path: '/customer/categories'
+      fullPath: '/customer/categories'
+      preLoaderRoute: typeof CustomerCategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/cart': {
+      id: '/customer/cart'
+      path: '/customer/cart'
+      fullPath: '/customer/cart'
+      preLoaderRoute: typeof CustomerCartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/addresses': {
+      id: '/customer/addresses'
+      path: '/customer/addresses'
+      fullPath: '/customer/addresses'
+      preLoaderRoute: typeof CustomerAddressesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/add-address': {
+      id: '/customer/add-address'
+      path: '/customer/add-address'
+      fullPath: '/customer/add-address'
+      preLoaderRoute: typeof CustomerAddAddressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/product/$id': {
+      id: '/customer/product/$id'
+      path: '/customer/product/$id'
+      fullPath: '/customer/product/$id'
+      preLoaderRoute: typeof CustomerProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/orders/$id': {
+      id: '/customer/orders/$id'
+      path: '/$id'
+      fullPath: '/customer/orders/$id'
+      preLoaderRoute: typeof CustomerOrdersIdRouteImport
+      parentRoute: typeof CustomerOrdersRoute
+    }
+    '/customer/category/$id': {
+      id: '/customer/category/$id'
+      path: '/customer/category/$id'
+      fullPath: '/customer/category/$id'
+      preLoaderRoute: typeof CustomerCategoryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface CustomerOrdersRouteChildren {
+  CustomerOrdersIdRoute: typeof CustomerOrdersIdRoute
+}
+
+const CustomerOrdersRouteChildren: CustomerOrdersRouteChildren = {
+  CustomerOrdersIdRoute: CustomerOrdersIdRoute,
+}
+
+const CustomerOrdersRouteWithChildren = CustomerOrdersRoute._addFileChildren(
+  CustomerOrdersRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CustomerAddAddressRoute: CustomerAddAddressRoute,
+  CustomerAddressesRoute: CustomerAddressesRoute,
+  CustomerCartRoute: CustomerCartRoute,
+  CustomerCategoriesRoute: CustomerCategoriesRoute,
+  CustomerCheckoutRoute: CustomerCheckoutRoute,
+  CustomerEditProfileRoute: CustomerEditProfileRoute,
+  CustomerHomeRoute: CustomerHomeRoute,
   CustomerLoginRoute: CustomerLoginRoute,
+  CustomerNotificationsRoute: CustomerNotificationsRoute,
+  CustomerOrderSuccessRoute: CustomerOrderSuccessRoute,
+  CustomerOrdersRoute: CustomerOrdersRouteWithChildren,
   CustomerOtpRoute: CustomerOtpRoute,
+  CustomerProfileRoute: CustomerProfileRoute,
+  CustomerSearchRoute: CustomerSearchRoute,
   CustomerSplashRoute: CustomerSplashRoute,
   CustomerWelcomeRoute: CustomerWelcomeRoute,
+  CustomerCategoryIdRoute: CustomerCategoryIdRoute,
+  CustomerProductIdRoute: CustomerProductIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
