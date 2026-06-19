@@ -83,7 +83,7 @@ function Cart() {
         </div>
       </div>
 
-      <div className="absolute bottom-[68px] left-1/2 z-10 w-full max-w-[440px] -translate-x-1/2 px-4">
+      <div className="absolute bottom-[100px] left-1/2 z-10 w-full max-w-[440px] -translate-x-1/2 px-4">
         <Link
           to="/customer/checkout"
           className="grid h-12 w-full place-items-center rounded-full bg-primary text-sm font-semibold text-primary-foreground shadow-pop"
