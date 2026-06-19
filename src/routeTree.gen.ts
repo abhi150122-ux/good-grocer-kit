@@ -9,9 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DeliveryIndexRouteImport } from './routes/delivery.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as DeliveryProfileRouteImport } from './routes/delivery.profile'
+import { Route as DeliveryOrdersRouteImport } from './routes/delivery.orders'
+import { Route as DeliveryHistoryRouteImport } from './routes/delivery.history'
 import { Route as CustomerWelcomeRouteImport } from './routes/customer.welcome'
 import { Route as CustomerSplashRouteImport } from './routes/customer.splash'
 import { Route as CustomerSearchRouteImport } from './routes/customer.search'
@@ -34,6 +39,8 @@ import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminDeliveryRouteImport } from './routes/admin.delivery'
 import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
 import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
+import { Route as DeliveryOrderIdRouteImport } from './routes/delivery.order.$id'
+import { Route as DeliveryDeliveredIdRouteImport } from './routes/delivery.delivered.$id'
 import { Route as CustomerProductIdRouteImport } from './routes/customer.product.$id'
 import { Route as CustomerOrdersIdRouteImport } from './routes/customer.orders.$id'
 import { Route as CustomerCategoryIdRouteImport } from './routes/customer.category.$id'
@@ -44,6 +51,11 @@ import { Route as AdminDeliveryNewRouteImport } from './routes/admin.delivery.ne
 import { Route as AdminDeliveryIdRouteImport } from './routes/admin.delivery.$id'
 import { Route as AdminCustomersIdRouteImport } from './routes/admin.customers.$id'
 
+const DeliveryRoute = DeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -54,10 +66,30 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeliveryIndexRoute = DeliveryIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DeliveryRoute,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const DeliveryProfileRoute = DeliveryProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DeliveryRoute,
+} as any)
+const DeliveryOrdersRoute = DeliveryOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => DeliveryRoute,
+} as any)
+const DeliveryHistoryRoute = DeliveryHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => DeliveryRoute,
 } as any)
 const CustomerWelcomeRoute = CustomerWelcomeRouteImport.update({
   id: '/customer/welcome',
@@ -169,6 +201,16 @@ const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
   path: '/categories',
   getParentRoute: () => AdminRoute,
 } as any)
+const DeliveryOrderIdRoute = DeliveryOrderIdRouteImport.update({
+  id: '/order/$id',
+  path: '/order/$id',
+  getParentRoute: () => DeliveryRoute,
+} as any)
+const DeliveryDeliveredIdRoute = DeliveryDeliveredIdRouteImport.update({
+  id: '/delivered/$id',
+  path: '/delivered/$id',
+  getParentRoute: () => DeliveryRoute,
+} as any)
 const CustomerProductIdRoute = CustomerProductIdRouteImport.update({
   id: '/customer/product/$id',
   path: '/customer/product/$id',
@@ -218,6 +260,7 @@ const AdminCustomersIdRoute = AdminCustomersIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/delivery': typeof DeliveryRouteWithChildren
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/customers': typeof AdminCustomersRouteWithChildren
   '/admin/delivery': typeof AdminDeliveryRouteWithChildren
@@ -240,7 +283,11 @@ export interface FileRoutesByFullPath {
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/delivery/history': typeof DeliveryHistoryRoute
+  '/delivery/orders': typeof DeliveryOrdersRoute
+  '/delivery/profile': typeof DeliveryProfileRoute
   '/admin/': typeof AdminIndexRoute
+  '/delivery/': typeof DeliveryIndexRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/delivery/$id': typeof AdminDeliveryIdRoute
   '/admin/delivery/new': typeof AdminDeliveryNewRoute
@@ -250,6 +297,8 @@ export interface FileRoutesByFullPath {
   '/customer/category/$id': typeof CustomerCategoryIdRoute
   '/customer/orders/$id': typeof CustomerOrdersIdRoute
   '/customer/product/$id': typeof CustomerProductIdRoute
+  '/delivery/delivered/$id': typeof DeliveryDeliveredIdRoute
+  '/delivery/order/$id': typeof DeliveryOrderIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -275,7 +324,11 @@ export interface FileRoutesByTo {
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/delivery/history': typeof DeliveryHistoryRoute
+  '/delivery/orders': typeof DeliveryOrdersRoute
+  '/delivery/profile': typeof DeliveryProfileRoute
   '/admin': typeof AdminIndexRoute
+  '/delivery': typeof DeliveryIndexRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/delivery/$id': typeof AdminDeliveryIdRoute
   '/admin/delivery/new': typeof AdminDeliveryNewRoute
@@ -285,11 +338,14 @@ export interface FileRoutesByTo {
   '/customer/category/$id': typeof CustomerCategoryIdRoute
   '/customer/orders/$id': typeof CustomerOrdersIdRoute
   '/customer/product/$id': typeof CustomerProductIdRoute
+  '/delivery/delivered/$id': typeof DeliveryDeliveredIdRoute
+  '/delivery/order/$id': typeof DeliveryOrderIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/delivery': typeof DeliveryRouteWithChildren
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/customers': typeof AdminCustomersRouteWithChildren
   '/admin/delivery': typeof AdminDeliveryRouteWithChildren
@@ -312,7 +368,11 @@ export interface FileRoutesById {
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/delivery/history': typeof DeliveryHistoryRoute
+  '/delivery/orders': typeof DeliveryOrdersRoute
+  '/delivery/profile': typeof DeliveryProfileRoute
   '/admin/': typeof AdminIndexRoute
+  '/delivery/': typeof DeliveryIndexRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/delivery/$id': typeof AdminDeliveryIdRoute
   '/admin/delivery/new': typeof AdminDeliveryNewRoute
@@ -322,12 +382,15 @@ export interface FileRoutesById {
   '/customer/category/$id': typeof CustomerCategoryIdRoute
   '/customer/orders/$id': typeof CustomerOrdersIdRoute
   '/customer/product/$id': typeof CustomerProductIdRoute
+  '/delivery/delivered/$id': typeof DeliveryDeliveredIdRoute
+  '/delivery/order/$id': typeof DeliveryOrderIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/admin'
+    | '/delivery'
     | '/admin/categories'
     | '/admin/customers'
     | '/admin/delivery'
@@ -350,7 +413,11 @@ export interface FileRouteTypes {
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/delivery/history'
+    | '/delivery/orders'
+    | '/delivery/profile'
     | '/admin/'
+    | '/delivery/'
     | '/admin/customers/$id'
     | '/admin/delivery/$id'
     | '/admin/delivery/new'
@@ -360,6 +427,8 @@ export interface FileRouteTypes {
     | '/customer/category/$id'
     | '/customer/orders/$id'
     | '/customer/product/$id'
+    | '/delivery/delivered/$id'
+    | '/delivery/order/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -385,7 +454,11 @@ export interface FileRouteTypes {
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/delivery/history'
+    | '/delivery/orders'
+    | '/delivery/profile'
     | '/admin'
+    | '/delivery'
     | '/admin/customers/$id'
     | '/admin/delivery/$id'
     | '/admin/delivery/new'
@@ -395,10 +468,13 @@ export interface FileRouteTypes {
     | '/customer/category/$id'
     | '/customer/orders/$id'
     | '/customer/product/$id'
+    | '/delivery/delivered/$id'
+    | '/delivery/order/$id'
   id:
     | '__root__'
     | '/'
     | '/admin'
+    | '/delivery'
     | '/admin/categories'
     | '/admin/customers'
     | '/admin/delivery'
@@ -421,7 +497,11 @@ export interface FileRouteTypes {
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/delivery/history'
+    | '/delivery/orders'
+    | '/delivery/profile'
     | '/admin/'
+    | '/delivery/'
     | '/admin/customers/$id'
     | '/admin/delivery/$id'
     | '/admin/delivery/new'
@@ -431,11 +511,14 @@ export interface FileRouteTypes {
     | '/customer/category/$id'
     | '/customer/orders/$id'
     | '/customer/product/$id'
+    | '/delivery/delivered/$id'
+    | '/delivery/order/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  DeliveryRoute: typeof DeliveryRouteWithChildren
   CustomerAddAddressRoute: typeof CustomerAddAddressRoute
   CustomerAddressesRoute: typeof CustomerAddressesRoute
   CustomerCartRoute: typeof CustomerCartRoute
@@ -458,6 +541,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/delivery': {
+      id: '/delivery'
+      path: '/delivery'
+      fullPath: '/delivery'
+      preLoaderRoute: typeof DeliveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -472,12 +562,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/delivery/': {
+      id: '/delivery/'
+      path: '/'
+      fullPath: '/delivery/'
+      preLoaderRoute: typeof DeliveryIndexRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/delivery/profile': {
+      id: '/delivery/profile'
+      path: '/profile'
+      fullPath: '/delivery/profile'
+      preLoaderRoute: typeof DeliveryProfileRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
+    '/delivery/orders': {
+      id: '/delivery/orders'
+      path: '/orders'
+      fullPath: '/delivery/orders'
+      preLoaderRoute: typeof DeliveryOrdersRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
+    '/delivery/history': {
+      id: '/delivery/history'
+      path: '/history'
+      fullPath: '/delivery/history'
+      preLoaderRoute: typeof DeliveryHistoryRouteImport
+      parentRoute: typeof DeliveryRoute
     }
     '/customer/welcome': {
       id: '/customer/welcome'
@@ -633,6 +751,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCategoriesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/delivery/order/$id': {
+      id: '/delivery/order/$id'
+      path: '/order/$id'
+      fullPath: '/delivery/order/$id'
+      preLoaderRoute: typeof DeliveryOrderIdRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
+    '/delivery/delivered/$id': {
+      id: '/delivery/delivered/$id'
+      path: '/delivered/$id'
+      fullPath: '/delivery/delivered/$id'
+      preLoaderRoute: typeof DeliveryDeliveredIdRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
     '/customer/product/$id': {
       id: '/customer/product/$id'
       path: '/customer/product/$id'
@@ -773,6 +905,28 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface DeliveryRouteChildren {
+  DeliveryHistoryRoute: typeof DeliveryHistoryRoute
+  DeliveryOrdersRoute: typeof DeliveryOrdersRoute
+  DeliveryProfileRoute: typeof DeliveryProfileRoute
+  DeliveryIndexRoute: typeof DeliveryIndexRoute
+  DeliveryDeliveredIdRoute: typeof DeliveryDeliveredIdRoute
+  DeliveryOrderIdRoute: typeof DeliveryOrderIdRoute
+}
+
+const DeliveryRouteChildren: DeliveryRouteChildren = {
+  DeliveryHistoryRoute: DeliveryHistoryRoute,
+  DeliveryOrdersRoute: DeliveryOrdersRoute,
+  DeliveryProfileRoute: DeliveryProfileRoute,
+  DeliveryIndexRoute: DeliveryIndexRoute,
+  DeliveryDeliveredIdRoute: DeliveryDeliveredIdRoute,
+  DeliveryOrderIdRoute: DeliveryOrderIdRoute,
+}
+
+const DeliveryRouteWithChildren = DeliveryRoute._addFileChildren(
+  DeliveryRouteChildren,
+)
+
 interface CustomerOrdersRouteChildren {
   CustomerOrdersIdRoute: typeof CustomerOrdersIdRoute
 }
@@ -788,6 +942,7 @@ const CustomerOrdersRouteWithChildren = CustomerOrdersRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  DeliveryRoute: DeliveryRouteWithChildren,
   CustomerAddAddressRoute: CustomerAddAddressRoute,
   CustomerAddressesRoute: CustomerAddressesRoute,
   CustomerCartRoute: CustomerCartRoute,
