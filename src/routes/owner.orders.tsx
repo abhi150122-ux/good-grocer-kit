@@ -11,9 +11,8 @@ const tabs: ("All" | Order["status"])[] = ["All", "Pending", "Accepted", "Packed
 
 function OwnerOrders() {
   const path = useRouterState({ select: (s) => s.location.pathname });
-  if (path !== "/owner/orders") return <Outlet />;
-
   const [tab, setTab] = useState<(typeof tabs)[number]>("Pending");
+  if (path !== "/owner/orders") return <Outlet />;
   const list = tab === "All" ? orders : orders.filter((o) => o.status === tab);
 
   return (
