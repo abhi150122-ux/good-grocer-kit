@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ShoppingBasket, LayoutDashboard, Bike, ArrowRight, Leaf } from "lucide-react";
+import { ShoppingBasket, LayoutDashboard, Bike, ArrowRight, Leaf, Store } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "FreshCart — Grocery Delivery" },
-      { name: "description", content: "Mobile-first grocery ecommerce with Customer app, Admin panel and Delivery partner system." },
+      { name: "description", content: "Mobile-first grocery ecommerce with Customer app, Owner app, Admin panel and Delivery partner system." },
     ],
   }),
   component: Landing,
@@ -17,6 +17,13 @@ const roles = [
     icon: ShoppingBasket,
     title: "Customer App",
     desc: "Browse groceries, order in minutes and track delivery — mobile-first shopping experience.",
+    tag: "Mobile",
+  },
+  {
+    to: "/owner",
+    icon: Store,
+    title: "Owner App",
+    desc: "Accept or reject incoming orders, assign delivery partners and track store performance.",
     tag: "Mobile",
   },
   {
@@ -59,7 +66,7 @@ function Landing() {
           </p>
         </header>
 
-        <div className="mt-10 grid gap-5 md:mt-14 md:grid-cols-3">
+        <div className="mt-10 grid gap-5 md:mt-14 md:grid-cols-2 xl:grid-cols-4">
           {roles.map((r) => (
             <Link
               key={r.to}

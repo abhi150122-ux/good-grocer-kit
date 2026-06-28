@@ -10,13 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhatsappRouteImport } from './routes/whatsapp'
+import { Route as OwnerRouteImport } from './routes/owner'
 import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OwnerIndexRouteImport } from './routes/owner.index'
 import { Route as DeliveryIndexRouteImport } from './routes/delivery.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as OwnerProfileRouteImport } from './routes/owner.profile'
+import { Route as OwnerOrdersRouteImport } from './routes/owner.orders'
+import { Route as OwnerNotificationsRouteImport } from './routes/owner.notifications'
 import { Route as DeliveryProfileRouteImport } from './routes/delivery.profile'
 import { Route as DeliveryOrdersRouteImport } from './routes/delivery.orders'
+import { Route as DeliveryNotificationsRouteImport } from './routes/delivery.notifications'
 import { Route as DeliveryHistoryRouteImport } from './routes/delivery.history'
 import { Route as CustomerWelcomeRouteImport } from './routes/customer.welcome'
 import { Route as CustomerSplashRouteImport } from './routes/customer.splash'
@@ -40,6 +46,7 @@ import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminDeliveryRouteImport } from './routes/admin.delivery'
 import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
 import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
+import { Route as OwnerOrdersIdRouteImport } from './routes/owner.orders.$id'
 import { Route as DeliveryOrderIdRouteImport } from './routes/delivery.order.$id'
 import { Route as DeliveryDeliveredIdRouteImport } from './routes/delivery.delivered.$id'
 import { Route as CustomerProductIdRouteImport } from './routes/customer.product.$id'
@@ -57,6 +64,11 @@ const WhatsappRoute = WhatsappRouteImport.update({
   path: '/whatsapp',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OwnerRoute = OwnerRouteImport.update({
+  id: '/owner',
+  path: '/owner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DeliveryRoute = DeliveryRouteImport.update({
   id: '/delivery',
   path: '/delivery',
@@ -72,6 +84,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OwnerIndexRoute = OwnerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => OwnerRoute,
+} as any)
 const DeliveryIndexRoute = DeliveryIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -82,6 +99,21 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const OwnerProfileRoute = OwnerProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => OwnerRoute,
+} as any)
+const OwnerOrdersRoute = OwnerOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => OwnerRoute,
+} as any)
+const OwnerNotificationsRoute = OwnerNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => OwnerRoute,
+} as any)
 const DeliveryProfileRoute = DeliveryProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -90,6 +122,11 @@ const DeliveryProfileRoute = DeliveryProfileRouteImport.update({
 const DeliveryOrdersRoute = DeliveryOrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
+  getParentRoute: () => DeliveryRoute,
+} as any)
+const DeliveryNotificationsRoute = DeliveryNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
   getParentRoute: () => DeliveryRoute,
 } as any)
 const DeliveryHistoryRoute = DeliveryHistoryRouteImport.update({
@@ -207,6 +244,11 @@ const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
   path: '/categories',
   getParentRoute: () => AdminRoute,
 } as any)
+const OwnerOrdersIdRoute = OwnerOrdersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => OwnerOrdersRoute,
+} as any)
 const DeliveryOrderIdRoute = DeliveryOrderIdRouteImport.update({
   id: '/order/$id',
   path: '/order/$id',
@@ -267,6 +309,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/delivery': typeof DeliveryRouteWithChildren
+  '/owner': typeof OwnerRouteWithChildren
   '/whatsapp': typeof WhatsappRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/customers': typeof AdminCustomersRouteWithChildren
@@ -291,10 +334,15 @@ export interface FileRoutesByFullPath {
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
   '/delivery/history': typeof DeliveryHistoryRoute
+  '/delivery/notifications': typeof DeliveryNotificationsRoute
   '/delivery/orders': typeof DeliveryOrdersRoute
   '/delivery/profile': typeof DeliveryProfileRoute
+  '/owner/notifications': typeof OwnerNotificationsRoute
+  '/owner/orders': typeof OwnerOrdersRouteWithChildren
+  '/owner/profile': typeof OwnerProfileRoute
   '/admin/': typeof AdminIndexRoute
   '/delivery/': typeof DeliveryIndexRoute
+  '/owner/': typeof OwnerIndexRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/delivery/$id': typeof AdminDeliveryIdRoute
   '/admin/delivery/new': typeof AdminDeliveryNewRoute
@@ -306,6 +354,7 @@ export interface FileRoutesByFullPath {
   '/customer/product/$id': typeof CustomerProductIdRoute
   '/delivery/delivered/$id': typeof DeliveryDeliveredIdRoute
   '/delivery/order/$id': typeof DeliveryOrderIdRoute
+  '/owner/orders/$id': typeof OwnerOrdersIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -333,10 +382,15 @@ export interface FileRoutesByTo {
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
   '/delivery/history': typeof DeliveryHistoryRoute
+  '/delivery/notifications': typeof DeliveryNotificationsRoute
   '/delivery/orders': typeof DeliveryOrdersRoute
   '/delivery/profile': typeof DeliveryProfileRoute
+  '/owner/notifications': typeof OwnerNotificationsRoute
+  '/owner/orders': typeof OwnerOrdersRouteWithChildren
+  '/owner/profile': typeof OwnerProfileRoute
   '/admin': typeof AdminIndexRoute
   '/delivery': typeof DeliveryIndexRoute
+  '/owner': typeof OwnerIndexRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/delivery/$id': typeof AdminDeliveryIdRoute
   '/admin/delivery/new': typeof AdminDeliveryNewRoute
@@ -348,12 +402,14 @@ export interface FileRoutesByTo {
   '/customer/product/$id': typeof CustomerProductIdRoute
   '/delivery/delivered/$id': typeof DeliveryDeliveredIdRoute
   '/delivery/order/$id': typeof DeliveryOrderIdRoute
+  '/owner/orders/$id': typeof OwnerOrdersIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/delivery': typeof DeliveryRouteWithChildren
+  '/owner': typeof OwnerRouteWithChildren
   '/whatsapp': typeof WhatsappRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/customers': typeof AdminCustomersRouteWithChildren
@@ -378,10 +434,15 @@ export interface FileRoutesById {
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
   '/delivery/history': typeof DeliveryHistoryRoute
+  '/delivery/notifications': typeof DeliveryNotificationsRoute
   '/delivery/orders': typeof DeliveryOrdersRoute
   '/delivery/profile': typeof DeliveryProfileRoute
+  '/owner/notifications': typeof OwnerNotificationsRoute
+  '/owner/orders': typeof OwnerOrdersRouteWithChildren
+  '/owner/profile': typeof OwnerProfileRoute
   '/admin/': typeof AdminIndexRoute
   '/delivery/': typeof DeliveryIndexRoute
+  '/owner/': typeof OwnerIndexRoute
   '/admin/customers/$id': typeof AdminCustomersIdRoute
   '/admin/delivery/$id': typeof AdminDeliveryIdRoute
   '/admin/delivery/new': typeof AdminDeliveryNewRoute
@@ -393,6 +454,7 @@ export interface FileRoutesById {
   '/customer/product/$id': typeof CustomerProductIdRoute
   '/delivery/delivered/$id': typeof DeliveryDeliveredIdRoute
   '/delivery/order/$id': typeof DeliveryOrderIdRoute
+  '/owner/orders/$id': typeof OwnerOrdersIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -400,6 +462,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/delivery'
+    | '/owner'
     | '/whatsapp'
     | '/admin/categories'
     | '/admin/customers'
@@ -424,10 +487,15 @@ export interface FileRouteTypes {
     | '/customer/splash'
     | '/customer/welcome'
     | '/delivery/history'
+    | '/delivery/notifications'
     | '/delivery/orders'
     | '/delivery/profile'
+    | '/owner/notifications'
+    | '/owner/orders'
+    | '/owner/profile'
     | '/admin/'
     | '/delivery/'
+    | '/owner/'
     | '/admin/customers/$id'
     | '/admin/delivery/$id'
     | '/admin/delivery/new'
@@ -439,6 +507,7 @@ export interface FileRouteTypes {
     | '/customer/product/$id'
     | '/delivery/delivered/$id'
     | '/delivery/order/$id'
+    | '/owner/orders/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -466,10 +535,15 @@ export interface FileRouteTypes {
     | '/customer/splash'
     | '/customer/welcome'
     | '/delivery/history'
+    | '/delivery/notifications'
     | '/delivery/orders'
     | '/delivery/profile'
+    | '/owner/notifications'
+    | '/owner/orders'
+    | '/owner/profile'
     | '/admin'
     | '/delivery'
+    | '/owner'
     | '/admin/customers/$id'
     | '/admin/delivery/$id'
     | '/admin/delivery/new'
@@ -481,11 +555,13 @@ export interface FileRouteTypes {
     | '/customer/product/$id'
     | '/delivery/delivered/$id'
     | '/delivery/order/$id'
+    | '/owner/orders/$id'
   id:
     | '__root__'
     | '/'
     | '/admin'
     | '/delivery'
+    | '/owner'
     | '/whatsapp'
     | '/admin/categories'
     | '/admin/customers'
@@ -510,10 +586,15 @@ export interface FileRouteTypes {
     | '/customer/splash'
     | '/customer/welcome'
     | '/delivery/history'
+    | '/delivery/notifications'
     | '/delivery/orders'
     | '/delivery/profile'
+    | '/owner/notifications'
+    | '/owner/orders'
+    | '/owner/profile'
     | '/admin/'
     | '/delivery/'
+    | '/owner/'
     | '/admin/customers/$id'
     | '/admin/delivery/$id'
     | '/admin/delivery/new'
@@ -525,12 +606,14 @@ export interface FileRouteTypes {
     | '/customer/product/$id'
     | '/delivery/delivered/$id'
     | '/delivery/order/$id'
+    | '/owner/orders/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
   DeliveryRoute: typeof DeliveryRouteWithChildren
+  OwnerRoute: typeof OwnerRouteWithChildren
   WhatsappRoute: typeof WhatsappRoute
   CustomerAddAddressRoute: typeof CustomerAddAddressRoute
   CustomerAddressesRoute: typeof CustomerAddressesRoute
@@ -561,6 +644,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WhatsappRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/owner': {
+      id: '/owner'
+      path: '/owner'
+      fullPath: '/owner'
+      preLoaderRoute: typeof OwnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/delivery': {
       id: '/delivery'
       path: '/delivery'
@@ -582,6 +672,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/owner/': {
+      id: '/owner/'
+      path: '/'
+      fullPath: '/owner/'
+      preLoaderRoute: typeof OwnerIndexRouteImport
+      parentRoute: typeof OwnerRoute
+    }
     '/delivery/': {
       id: '/delivery/'
       path: '/'
@@ -596,6 +693,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/owner/profile': {
+      id: '/owner/profile'
+      path: '/profile'
+      fullPath: '/owner/profile'
+      preLoaderRoute: typeof OwnerProfileRouteImport
+      parentRoute: typeof OwnerRoute
+    }
+    '/owner/orders': {
+      id: '/owner/orders'
+      path: '/orders'
+      fullPath: '/owner/orders'
+      preLoaderRoute: typeof OwnerOrdersRouteImport
+      parentRoute: typeof OwnerRoute
+    }
+    '/owner/notifications': {
+      id: '/owner/notifications'
+      path: '/notifications'
+      fullPath: '/owner/notifications'
+      preLoaderRoute: typeof OwnerNotificationsRouteImport
+      parentRoute: typeof OwnerRoute
+    }
     '/delivery/profile': {
       id: '/delivery/profile'
       path: '/profile'
@@ -608,6 +726,13 @@ declare module '@tanstack/react-router' {
       path: '/orders'
       fullPath: '/delivery/orders'
       preLoaderRoute: typeof DeliveryOrdersRouteImport
+      parentRoute: typeof DeliveryRoute
+    }
+    '/delivery/notifications': {
+      id: '/delivery/notifications'
+      path: '/notifications'
+      fullPath: '/delivery/notifications'
+      preLoaderRoute: typeof DeliveryNotificationsRouteImport
       parentRoute: typeof DeliveryRoute
     }
     '/delivery/history': {
@@ -771,6 +896,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCategoriesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/owner/orders/$id': {
+      id: '/owner/orders/$id'
+      path: '/$id'
+      fullPath: '/owner/orders/$id'
+      preLoaderRoute: typeof OwnerOrdersIdRouteImport
+      parentRoute: typeof OwnerOrdersRoute
+    }
     '/delivery/order/$id': {
       id: '/delivery/order/$id'
       path: '/order/$id'
@@ -927,6 +1059,7 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface DeliveryRouteChildren {
   DeliveryHistoryRoute: typeof DeliveryHistoryRoute
+  DeliveryNotificationsRoute: typeof DeliveryNotificationsRoute
   DeliveryOrdersRoute: typeof DeliveryOrdersRoute
   DeliveryProfileRoute: typeof DeliveryProfileRoute
   DeliveryIndexRoute: typeof DeliveryIndexRoute
@@ -936,6 +1069,7 @@ interface DeliveryRouteChildren {
 
 const DeliveryRouteChildren: DeliveryRouteChildren = {
   DeliveryHistoryRoute: DeliveryHistoryRoute,
+  DeliveryNotificationsRoute: DeliveryNotificationsRoute,
   DeliveryOrdersRoute: DeliveryOrdersRoute,
   DeliveryProfileRoute: DeliveryProfileRoute,
   DeliveryIndexRoute: DeliveryIndexRoute,
@@ -946,6 +1080,34 @@ const DeliveryRouteChildren: DeliveryRouteChildren = {
 const DeliveryRouteWithChildren = DeliveryRoute._addFileChildren(
   DeliveryRouteChildren,
 )
+
+interface OwnerOrdersRouteChildren {
+  OwnerOrdersIdRoute: typeof OwnerOrdersIdRoute
+}
+
+const OwnerOrdersRouteChildren: OwnerOrdersRouteChildren = {
+  OwnerOrdersIdRoute: OwnerOrdersIdRoute,
+}
+
+const OwnerOrdersRouteWithChildren = OwnerOrdersRoute._addFileChildren(
+  OwnerOrdersRouteChildren,
+)
+
+interface OwnerRouteChildren {
+  OwnerNotificationsRoute: typeof OwnerNotificationsRoute
+  OwnerOrdersRoute: typeof OwnerOrdersRouteWithChildren
+  OwnerProfileRoute: typeof OwnerProfileRoute
+  OwnerIndexRoute: typeof OwnerIndexRoute
+}
+
+const OwnerRouteChildren: OwnerRouteChildren = {
+  OwnerNotificationsRoute: OwnerNotificationsRoute,
+  OwnerOrdersRoute: OwnerOrdersRouteWithChildren,
+  OwnerProfileRoute: OwnerProfileRoute,
+  OwnerIndexRoute: OwnerIndexRoute,
+}
+
+const OwnerRouteWithChildren = OwnerRoute._addFileChildren(OwnerRouteChildren)
 
 interface CustomerOrdersRouteChildren {
   CustomerOrdersIdRoute: typeof CustomerOrdersIdRoute
@@ -963,6 +1125,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
   DeliveryRoute: DeliveryRouteWithChildren,
+  OwnerRoute: OwnerRouteWithChildren,
   WhatsappRoute: WhatsappRoute,
   CustomerAddAddressRoute: CustomerAddAddressRoute,
   CustomerAddressesRoute: CustomerAddressesRoute,
