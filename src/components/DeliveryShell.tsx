@@ -1,11 +1,12 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Bike, ClipboardList, History, User } from "lucide-react";
+import { Bike, ClipboardList, History, User, Bell } from "lucide-react";
 import { MobileFrame } from "./MobileFrame";
 import type { ReactNode } from "react";
 
 const items = [
   { to: "/delivery/orders", icon: ClipboardList, label: "Orders" },
   { to: "/delivery/history", icon: History, label: "History" },
+  { to: "/delivery/notifications", icon: Bell, label: "Alerts" },
   { to: "/delivery/profile", icon: User, label: "Profile" },
 ] as const;
 
