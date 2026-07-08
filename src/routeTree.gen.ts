@@ -24,6 +24,15 @@ import { Route as DeliveryProfileRouteImport } from './routes/delivery.profile'
 import { Route as DeliveryOrdersRouteImport } from './routes/delivery.orders'
 import { Route as DeliveryNotificationsRouteImport } from './routes/delivery.notifications'
 import { Route as DeliveryHistoryRouteImport } from './routes/delivery.history'
+import { Route as DefaultPagesTermsRouteImport } from './routes/default-pages.terms'
+import { Route as DefaultPagesShippingPolicyRouteImport } from './routes/default-pages.shipping-policy'
+import { Route as DefaultPagesRefundPolicyRouteImport } from './routes/default-pages.refund-policy'
+import { Route as DefaultPagesProductsRouteImport } from './routes/default-pages.products'
+import { Route as DefaultPagesPrivacyPolicyRouteImport } from './routes/default-pages.privacy-policy'
+import { Route as DefaultPagesHomeRouteImport } from './routes/default-pages.home'
+import { Route as DefaultPagesDeliveryRouteImport } from './routes/default-pages.delivery'
+import { Route as DefaultPagesContactRouteImport } from './routes/default-pages.contact'
+import { Route as DefaultPagesAboutRouteImport } from './routes/default-pages.about'
 import { Route as CustomerWelcomeRouteImport } from './routes/customer.welcome'
 import { Route as CustomerSplashRouteImport } from './routes/customer.splash'
 import { Route as CustomerSearchRouteImport } from './routes/customer.search'
@@ -133,6 +142,54 @@ const DeliveryHistoryRoute = DeliveryHistoryRouteImport.update({
   id: '/history',
   path: '/history',
   getParentRoute: () => DeliveryRoute,
+} as any)
+const DefaultPagesTermsRoute = DefaultPagesTermsRouteImport.update({
+  id: '/default-pages/terms',
+  path: '/default-pages/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DefaultPagesShippingPolicyRoute =
+  DefaultPagesShippingPolicyRouteImport.update({
+    id: '/default-pages/shipping-policy',
+    path: '/default-pages/shipping-policy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DefaultPagesRefundPolicyRoute =
+  DefaultPagesRefundPolicyRouteImport.update({
+    id: '/default-pages/refund-policy',
+    path: '/default-pages/refund-policy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DefaultPagesProductsRoute = DefaultPagesProductsRouteImport.update({
+  id: '/default-pages/products',
+  path: '/default-pages/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DefaultPagesPrivacyPolicyRoute =
+  DefaultPagesPrivacyPolicyRouteImport.update({
+    id: '/default-pages/privacy-policy',
+    path: '/default-pages/privacy-policy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DefaultPagesHomeRoute = DefaultPagesHomeRouteImport.update({
+  id: '/default-pages/home',
+  path: '/default-pages/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DefaultPagesDeliveryRoute = DefaultPagesDeliveryRouteImport.update({
+  id: '/default-pages/delivery',
+  path: '/default-pages/delivery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DefaultPagesContactRoute = DefaultPagesContactRouteImport.update({
+  id: '/default-pages/contact',
+  path: '/default-pages/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DefaultPagesAboutRoute = DefaultPagesAboutRouteImport.update({
+  id: '/default-pages/about',
+  path: '/default-pages/about',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CustomerWelcomeRoute = CustomerWelcomeRouteImport.update({
   id: '/customer/welcome',
@@ -333,6 +390,15 @@ export interface FileRoutesByFullPath {
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/default-pages/about': typeof DefaultPagesAboutRoute
+  '/default-pages/contact': typeof DefaultPagesContactRoute
+  '/default-pages/delivery': typeof DefaultPagesDeliveryRoute
+  '/default-pages/home': typeof DefaultPagesHomeRoute
+  '/default-pages/privacy-policy': typeof DefaultPagesPrivacyPolicyRoute
+  '/default-pages/products': typeof DefaultPagesProductsRoute
+  '/default-pages/refund-policy': typeof DefaultPagesRefundPolicyRoute
+  '/default-pages/shipping-policy': typeof DefaultPagesShippingPolicyRoute
+  '/default-pages/terms': typeof DefaultPagesTermsRoute
   '/delivery/history': typeof DeliveryHistoryRoute
   '/delivery/notifications': typeof DeliveryNotificationsRoute
   '/delivery/orders': typeof DeliveryOrdersRoute
@@ -381,6 +447,15 @@ export interface FileRoutesByTo {
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/default-pages/about': typeof DefaultPagesAboutRoute
+  '/default-pages/contact': typeof DefaultPagesContactRoute
+  '/default-pages/delivery': typeof DefaultPagesDeliveryRoute
+  '/default-pages/home': typeof DefaultPagesHomeRoute
+  '/default-pages/privacy-policy': typeof DefaultPagesPrivacyPolicyRoute
+  '/default-pages/products': typeof DefaultPagesProductsRoute
+  '/default-pages/refund-policy': typeof DefaultPagesRefundPolicyRoute
+  '/default-pages/shipping-policy': typeof DefaultPagesShippingPolicyRoute
+  '/default-pages/terms': typeof DefaultPagesTermsRoute
   '/delivery/history': typeof DeliveryHistoryRoute
   '/delivery/notifications': typeof DeliveryNotificationsRoute
   '/delivery/orders': typeof DeliveryOrdersRoute
@@ -433,6 +508,15 @@ export interface FileRoutesById {
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
+  '/default-pages/about': typeof DefaultPagesAboutRoute
+  '/default-pages/contact': typeof DefaultPagesContactRoute
+  '/default-pages/delivery': typeof DefaultPagesDeliveryRoute
+  '/default-pages/home': typeof DefaultPagesHomeRoute
+  '/default-pages/privacy-policy': typeof DefaultPagesPrivacyPolicyRoute
+  '/default-pages/products': typeof DefaultPagesProductsRoute
+  '/default-pages/refund-policy': typeof DefaultPagesRefundPolicyRoute
+  '/default-pages/shipping-policy': typeof DefaultPagesShippingPolicyRoute
+  '/default-pages/terms': typeof DefaultPagesTermsRoute
   '/delivery/history': typeof DeliveryHistoryRoute
   '/delivery/notifications': typeof DeliveryNotificationsRoute
   '/delivery/orders': typeof DeliveryOrdersRoute
@@ -486,6 +570,15 @@ export interface FileRouteTypes {
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/default-pages/about'
+    | '/default-pages/contact'
+    | '/default-pages/delivery'
+    | '/default-pages/home'
+    | '/default-pages/privacy-policy'
+    | '/default-pages/products'
+    | '/default-pages/refund-policy'
+    | '/default-pages/shipping-policy'
+    | '/default-pages/terms'
     | '/delivery/history'
     | '/delivery/notifications'
     | '/delivery/orders'
@@ -534,6 +627,15 @@ export interface FileRouteTypes {
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/default-pages/about'
+    | '/default-pages/contact'
+    | '/default-pages/delivery'
+    | '/default-pages/home'
+    | '/default-pages/privacy-policy'
+    | '/default-pages/products'
+    | '/default-pages/refund-policy'
+    | '/default-pages/shipping-policy'
+    | '/default-pages/terms'
     | '/delivery/history'
     | '/delivery/notifications'
     | '/delivery/orders'
@@ -585,6 +687,15 @@ export interface FileRouteTypes {
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
+    | '/default-pages/about'
+    | '/default-pages/contact'
+    | '/default-pages/delivery'
+    | '/default-pages/home'
+    | '/default-pages/privacy-policy'
+    | '/default-pages/products'
+    | '/default-pages/refund-policy'
+    | '/default-pages/shipping-policy'
+    | '/default-pages/terms'
     | '/delivery/history'
     | '/delivery/notifications'
     | '/delivery/orders'
@@ -631,6 +742,15 @@ export interface RootRouteChildren {
   CustomerSearchRoute: typeof CustomerSearchRoute
   CustomerSplashRoute: typeof CustomerSplashRoute
   CustomerWelcomeRoute: typeof CustomerWelcomeRoute
+  DefaultPagesAboutRoute: typeof DefaultPagesAboutRoute
+  DefaultPagesContactRoute: typeof DefaultPagesContactRoute
+  DefaultPagesDeliveryRoute: typeof DefaultPagesDeliveryRoute
+  DefaultPagesHomeRoute: typeof DefaultPagesHomeRoute
+  DefaultPagesPrivacyPolicyRoute: typeof DefaultPagesPrivacyPolicyRoute
+  DefaultPagesProductsRoute: typeof DefaultPagesProductsRoute
+  DefaultPagesRefundPolicyRoute: typeof DefaultPagesRefundPolicyRoute
+  DefaultPagesShippingPolicyRoute: typeof DefaultPagesShippingPolicyRoute
+  DefaultPagesTermsRoute: typeof DefaultPagesTermsRoute
   CustomerCategoryIdRoute: typeof CustomerCategoryIdRoute
   CustomerProductIdRoute: typeof CustomerProductIdRoute
 }
@@ -741,6 +861,69 @@ declare module '@tanstack/react-router' {
       fullPath: '/delivery/history'
       preLoaderRoute: typeof DeliveryHistoryRouteImport
       parentRoute: typeof DeliveryRoute
+    }
+    '/default-pages/terms': {
+      id: '/default-pages/terms'
+      path: '/default-pages/terms'
+      fullPath: '/default-pages/terms'
+      preLoaderRoute: typeof DefaultPagesTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/default-pages/shipping-policy': {
+      id: '/default-pages/shipping-policy'
+      path: '/default-pages/shipping-policy'
+      fullPath: '/default-pages/shipping-policy'
+      preLoaderRoute: typeof DefaultPagesShippingPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/default-pages/refund-policy': {
+      id: '/default-pages/refund-policy'
+      path: '/default-pages/refund-policy'
+      fullPath: '/default-pages/refund-policy'
+      preLoaderRoute: typeof DefaultPagesRefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/default-pages/products': {
+      id: '/default-pages/products'
+      path: '/default-pages/products'
+      fullPath: '/default-pages/products'
+      preLoaderRoute: typeof DefaultPagesProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/default-pages/privacy-policy': {
+      id: '/default-pages/privacy-policy'
+      path: '/default-pages/privacy-policy'
+      fullPath: '/default-pages/privacy-policy'
+      preLoaderRoute: typeof DefaultPagesPrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/default-pages/home': {
+      id: '/default-pages/home'
+      path: '/default-pages/home'
+      fullPath: '/default-pages/home'
+      preLoaderRoute: typeof DefaultPagesHomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/default-pages/delivery': {
+      id: '/default-pages/delivery'
+      path: '/default-pages/delivery'
+      fullPath: '/default-pages/delivery'
+      preLoaderRoute: typeof DefaultPagesDeliveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/default-pages/contact': {
+      id: '/default-pages/contact'
+      path: '/default-pages/contact'
+      fullPath: '/default-pages/contact'
+      preLoaderRoute: typeof DefaultPagesContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/default-pages/about': {
+      id: '/default-pages/about'
+      path: '/default-pages/about'
+      fullPath: '/default-pages/about'
+      preLoaderRoute: typeof DefaultPagesAboutRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/customer/welcome': {
       id: '/customer/welcome'
@@ -1143,6 +1326,15 @@ const rootRouteChildren: RootRouteChildren = {
   CustomerSearchRoute: CustomerSearchRoute,
   CustomerSplashRoute: CustomerSplashRoute,
   CustomerWelcomeRoute: CustomerWelcomeRoute,
+  DefaultPagesAboutRoute: DefaultPagesAboutRoute,
+  DefaultPagesContactRoute: DefaultPagesContactRoute,
+  DefaultPagesDeliveryRoute: DefaultPagesDeliveryRoute,
+  DefaultPagesHomeRoute: DefaultPagesHomeRoute,
+  DefaultPagesPrivacyPolicyRoute: DefaultPagesPrivacyPolicyRoute,
+  DefaultPagesProductsRoute: DefaultPagesProductsRoute,
+  DefaultPagesRefundPolicyRoute: DefaultPagesRefundPolicyRoute,
+  DefaultPagesShippingPolicyRoute: DefaultPagesShippingPolicyRoute,
+  DefaultPagesTermsRoute: DefaultPagesTermsRoute,
   CustomerCategoryIdRoute: CustomerCategoryIdRoute,
   CustomerProductIdRoute: CustomerProductIdRoute,
 }
