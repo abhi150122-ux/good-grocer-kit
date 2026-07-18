@@ -36,6 +36,7 @@ import { Route as DefaultPagesAboutRouteImport } from './routes/default-pages.ab
 import { Route as CustomerWelcomeRouteImport } from './routes/customer.welcome'
 import { Route as CustomerSplashRouteImport } from './routes/customer.splash'
 import { Route as CustomerSearchRouteImport } from './routes/customer.search'
+import { Route as CustomerRegisterRouteImport } from './routes/customer.register'
 import { Route as CustomerProfileRouteImport } from './routes/customer.profile'
 import { Route as CustomerOtpRouteImport } from './routes/customer.otp'
 import { Route as CustomerOrdersRouteImport } from './routes/customer.orders'
@@ -204,6 +205,11 @@ const CustomerSplashRoute = CustomerSplashRouteImport.update({
 const CustomerSearchRoute = CustomerSearchRouteImport.update({
   id: '/customer/search',
   path: '/customer/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerRegisterRoute = CustomerRegisterRouteImport.update({
+  id: '/customer/register',
+  path: '/customer/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CustomerProfileRoute = CustomerProfileRouteImport.update({
@@ -387,6 +393,7 @@ export interface FileRoutesByFullPath {
   '/customer/orders': typeof CustomerOrdersRouteWithChildren
   '/customer/otp': typeof CustomerOtpRoute
   '/customer/profile': typeof CustomerProfileRoute
+  '/customer/register': typeof CustomerRegisterRoute
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
@@ -444,6 +451,7 @@ export interface FileRoutesByTo {
   '/customer/orders': typeof CustomerOrdersRouteWithChildren
   '/customer/otp': typeof CustomerOtpRoute
   '/customer/profile': typeof CustomerProfileRoute
+  '/customer/register': typeof CustomerRegisterRoute
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
@@ -505,6 +513,7 @@ export interface FileRoutesById {
   '/customer/orders': typeof CustomerOrdersRouteWithChildren
   '/customer/otp': typeof CustomerOtpRoute
   '/customer/profile': typeof CustomerProfileRoute
+  '/customer/register': typeof CustomerRegisterRoute
   '/customer/search': typeof CustomerSearchRoute
   '/customer/splash': typeof CustomerSplashRoute
   '/customer/welcome': typeof CustomerWelcomeRoute
@@ -567,6 +576,7 @@ export interface FileRouteTypes {
     | '/customer/orders'
     | '/customer/otp'
     | '/customer/profile'
+    | '/customer/register'
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
@@ -624,6 +634,7 @@ export interface FileRouteTypes {
     | '/customer/orders'
     | '/customer/otp'
     | '/customer/profile'
+    | '/customer/register'
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
@@ -684,6 +695,7 @@ export interface FileRouteTypes {
     | '/customer/orders'
     | '/customer/otp'
     | '/customer/profile'
+    | '/customer/register'
     | '/customer/search'
     | '/customer/splash'
     | '/customer/welcome'
@@ -739,6 +751,7 @@ export interface RootRouteChildren {
   CustomerOrdersRoute: typeof CustomerOrdersRouteWithChildren
   CustomerOtpRoute: typeof CustomerOtpRoute
   CustomerProfileRoute: typeof CustomerProfileRoute
+  CustomerRegisterRoute: typeof CustomerRegisterRoute
   CustomerSearchRoute: typeof CustomerSearchRoute
   CustomerSplashRoute: typeof CustomerSplashRoute
   CustomerWelcomeRoute: typeof CustomerWelcomeRoute
@@ -944,6 +957,13 @@ declare module '@tanstack/react-router' {
       path: '/customer/search'
       fullPath: '/customer/search'
       preLoaderRoute: typeof CustomerSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/register': {
+      id: '/customer/register'
+      path: '/customer/register'
+      fullPath: '/customer/register'
+      preLoaderRoute: typeof CustomerRegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/customer/profile': {
@@ -1323,6 +1343,7 @@ const rootRouteChildren: RootRouteChildren = {
   CustomerOrdersRoute: CustomerOrdersRouteWithChildren,
   CustomerOtpRoute: CustomerOtpRoute,
   CustomerProfileRoute: CustomerProfileRoute,
+  CustomerRegisterRoute: CustomerRegisterRoute,
   CustomerSearchRoute: CustomerSearchRoute,
   CustomerSplashRoute: CustomerSplashRoute,
   CustomerWelcomeRoute: CustomerWelcomeRoute,
@@ -1341,13 +1362,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
