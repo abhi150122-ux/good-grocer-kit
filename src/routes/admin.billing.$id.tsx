@@ -73,7 +73,7 @@ function InvoiceDetail() {
               </tr>
             </thead>
             <tbody>
-              {inv.lines.map((l, i) => {
+              {inv.lines.map((l: typeof inv.lines[number], i: number) => {
                 const amt = l.qty * l.rate - l.discount;
                 return (
                   <tr key={i} className="border-b last:border-0">
