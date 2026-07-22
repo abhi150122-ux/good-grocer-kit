@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { PublicSite, catalog } from "@/components/PublicSite";
+import { PublicSite, productCatalog } from "@/components/PublicSite";
 import { Search, ShoppingCart, Star, Plus } from "lucide-react";
 
 export const Route = createFileRoute("/default-pages/shop")({
@@ -15,17 +15,20 @@ export const Route = createFileRoute("/default-pages/shop")({
   component: Shop,
 });
 
+type ShopItem = { name: string; variant: string; price: number; category: string };
+
 function Shop() {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState<string>("All");
   const [cart, setCart] = useState<Record<string, number>>({});
 
-  const cats = ["All", ...catalog.map((c) => c.name)];
-  const flat = useMemo(() => catalog.flatMap((c) => c.items.map((i) => ({ ...i, category: c.name }))), []);
+  const cats = ["All", ...productCatalog.map((c) => c.title)];
+  const flat = useMemo<ShopItem[]>(() => productCatalog.flatMap((c) => c.items.map((i) => ({ ...i, category: c.title }))), []);
   const list = flat.filter((p) => (cat === "All" || p.category === cat) && (q === "" || p.name.toLowerCase().includes(q.toLowerCase())));
 
   const cartCount = Object.values(cart).reduce((s, n) => s + n, 0);
   const cartTotal = flat.filter((p) => cart[p.name]).reduce((s, p) => s + p.price * (cart[p.name] || 0), 0);
+
 
   const add = (name: string) => setCart((c) => ({ ...c, [name]: (c[name] || 0) + 1 }));
 
