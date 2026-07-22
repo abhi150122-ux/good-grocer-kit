@@ -2,58 +2,82 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdminShell } from "@/components/AdminShell";
 import { StatusChip } from "@/components/ui-bits";
 import { orders, salesData, formatPrice, customers } from "@/lib/mock";
-import { ShoppingBag, Users, IndianRupee, TrendingUp, ArrowUpRight, ArrowRight } from "lucide-react";
-import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip, AreaChart, Area, CartesianGrid } from "recharts";
+import { invoices, inventory, expenses, monthlyProfit, topSelling, rupees } from "@/lib/erp-mock";
+import { ShoppingBag, Users, IndianRupee, TrendingUp, ArrowUpRight, ArrowRight, Boxes, Wallet, Receipt, AlertTriangle, Clock, PiggyBank } from "lucide-react";
+import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip, AreaChart, Area, CartesianGrid, BarChart, Bar, PieChart, Pie, Cell, Legend } from "recharts";
 
 export const Route = createFileRoute("/admin/")({ component: Dashboard });
 
-const stats = [
-  { label: "Total orders", value: "1,284", icon: ShoppingBag, change: "+12.4%", tone: "primary" as const },
-  { label: "Total customers", value: "468", icon: Users, change: "+5.1%", tone: "info" as const },
-  { label: "Revenue (7d)", value: "₹1.32L", icon: IndianRupee, change: "+8.7%", tone: "success" as const },
-  { label: "Avg. order value", value: "₹524", icon: TrendingUp, change: "+2.3%", tone: "warning" as const },
-];
-
 function Dashboard() {
+  const totalRevenue = monthlyProfit.reduce((s, m) => s + m.revenue, 0);
+  const monthly = monthlyProfit[monthlyProfit.length - 1];
+  const invValue = inventory.reduce((s, i) => s + i.stock * i.purchasePrice, 0);
+  const lowStock = inventory.filter((i) => i.stock < i.minStock).length;
+  const pending = invoices.filter((i) => i.status !== "Paid").reduce((s, i) => s + (i.total - i.paid), 0);
+  const monthExp = expenses.reduce((s, e) => s + e.amount, 0);
+
+  const stats = [
+    { label: "Total revenue", value: rupees(totalRevenue), icon: IndianRupee, change: "+12.4%", tone: "bg-primary-soft text-primary" },
+    { label: "Total orders", value: "1,284", icon: ShoppingBag, change: "+8.1%", tone: "bg-chart-4/15 text-chart-4" },
+    { label: "Customers", value: customers.length.toString() + "0", icon: Users, change: "+5.1%", tone: "bg-success/15 text-success" },
+    { label: "Products", value: inventory.length.toString(), icon: Boxes, change: "+2", tone: "bg-warning/15 text-warning-foreground" },
+    { label: "Inventory value", value: rupees(invValue), icon: PiggyBank, change: "+3.4%", tone: "bg-primary-soft text-primary" },
+    { label: "Monthly profit", value: rupees(monthly.profit), icon: TrendingUp, change: "+6.8%", tone: "bg-success/15 text-success" },
+    { label: "Monthly expenses", value: rupees(monthExp), icon: Receipt, change: "+2.1%", tone: "bg-destructive/15 text-destructive" },
+    { label: "Outstanding", value: rupees(pending), icon: Clock, change: "3 overdue", tone: "bg-warning/15 text-warning-foreground" },
+  ];
+
+  const expenseBreakdown = [
+    { name: "Rent", value: 35000, color: "oklch(0.58 0.17 148)" },
+    { name: "Salaries", value: 18000, color: "oklch(0.78 0.16 75)" },
+    { name: "Electricity", value: 4820, color: "oklch(0.7 0.15 200)" },
+    { name: "Other", value: 8610, color: "oklch(0.72 0.14 320)" },
+  ];
+
   return (
     <AdminShell title="Dashboard">
-      <div className="grid grid-cols-2 gap-3 md:gap-5 lg:grid-cols-4">
-        {stats.map((s) => {
-          const toneMap = {
-            primary: "bg-primary-soft text-primary",
-            info: "bg-chart-4/15 text-chart-4",
-            success: "bg-success/15 text-success",
-            warning: "bg-warning/15 text-warning-foreground",
-          } as const;
-          return (
-            <div key={s.label} className="rounded-2xl border bg-card p-4 shadow-soft md:p-5">
-              <div className="flex items-start justify-between">
-                <div className={"grid h-10 w-10 place-items-center rounded-xl " + toneMap[s.tone]}>
-                  <s.icon className="h-5 w-5" />
-                </div>
-                <span className="inline-flex items-center gap-0.5 rounded-full bg-success/15 px-2 py-0.5 text-[11px] font-semibold text-success">
-                  <ArrowUpRight className="h-3 w-3" /> {s.change}
-                </span>
-              </div>
-              <p className="mt-3 text-2xl font-bold tracking-tight">{s.value}</p>
-              <p className="text-xs text-muted-foreground">{s.label}</p>
+      {lowStock > 0 && (
+        <Link to="/admin/inventory" className="mb-5 flex items-center justify-between rounded-2xl border border-warning/40 bg-warning/10 p-4">
+          <div className="flex items-center gap-3">
+            <div className="grid h-10 w-10 place-items-center rounded-xl bg-warning/20 text-warning-foreground"><AlertTriangle className="h-5 w-5" /></div>
+            <div>
+              <p className="text-sm font-semibold">{lowStock} products need restocking</p>
+              <p className="text-[11px] text-muted-foreground">Review inventory to avoid stock-outs</p>
             </div>
-          );
-        })}
+          </div>
+          <ArrowRight className="h-4 w-4 text-muted-foreground" />
+        </Link>
+      )}
+
+      <div className="grid grid-cols-2 gap-3 md:gap-5 lg:grid-cols-4">
+        {stats.map((s) => (
+          <div key={s.label} className="rounded-2xl border bg-card p-4 shadow-soft md:p-5">
+            <div className="flex items-start justify-between">
+              <div className={"grid h-10 w-10 place-items-center rounded-xl " + s.tone}>
+                <s.icon className="h-5 w-5" />
+              </div>
+              <span className="inline-flex items-center gap-0.5 rounded-full bg-success/15 px-2 py-0.5 text-[11px] font-semibold text-success">
+                <ArrowUpRight className="h-3 w-3" /> {s.change}
+              </span>
+            </div>
+            <p className="mt-3 text-xl font-bold tracking-tight md:text-2xl">{s.value}</p>
+            <p className="text-xs text-muted-foreground">{s.label}</p>
+          </div>
+        ))}
       </div>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-3">
         <div className="rounded-2xl border bg-card p-5 shadow-soft lg:col-span-2">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-sm font-semibold">Sales overview</h3>
-              <p className="text-xs text-muted-foreground">Last 7 days revenue</p>
+              <h3 className="text-sm font-semibold">Sales & revenue trend</h3>
+              <p className="text-xs text-muted-foreground">Last 7 days</p>
             </div>
             <select className="rounded-xl border bg-card px-3 py-1.5 text-xs font-medium">
               <option>7 days</option><option>30 days</option><option>90 days</option>
             </select>
           </div>
-          <div className="mt-4 h-64">
+          <div className="mt-4 h-56">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={salesData}>
                 <defs>
@@ -65,7 +89,7 @@ function Dashboard() {
                 <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.92 0.01 140)" vertical={false} />
                 <XAxis dataKey="day" tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ borderRadius: 12, border: "1px solid oklch(0.92 0.01 140)" }} />
+                <Tooltip contentStyle={{ borderRadius: 12 }} />
                 <Area type="monotone" dataKey="sales" stroke="oklch(0.58 0.17 148)" strokeWidth={2.5} fill="url(#g)" />
               </AreaChart>
             </ResponsiveContainer>
@@ -73,17 +97,52 @@ function Dashboard() {
         </div>
 
         <div className="rounded-2xl border bg-card p-5 shadow-soft">
-          <h3 className="text-sm font-semibold">Top customers</h3>
-          <p className="text-xs text-muted-foreground">By total spend</p>
+          <h3 className="text-sm font-semibold">Expense breakdown</h3>
+          <p className="text-xs text-muted-foreground">This month</p>
+          <div className="mt-4 h-52">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={expenseBreakdown} dataKey="value" innerRadius={45} outerRadius={70} paddingAngle={3}>
+                  {expenseBreakdown.map((p) => <Cell key={p.name} fill={p.color} />)}
+                </Pie>
+                <Tooltip formatter={(v: number) => rupees(v)} />
+                <Legend iconType="circle" wrapperStyle={{ fontSize: 11 }} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-5 lg:grid-cols-3">
+        <div className="rounded-2xl border bg-card p-5 shadow-soft lg:col-span-2">
+          <h3 className="text-sm font-semibold">Monthly profit analysis</h3>
+          <div className="mt-4 h-56">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={monthlyProfit}>
+                <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.92 0.01 140)" vertical={false} />
+                <XAxis dataKey="month" tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+                <Tooltip formatter={(v: number) => rupees(v)} contentStyle={{ borderRadius: 12 }} />
+                <Legend iconType="circle" wrapperStyle={{ fontSize: 11 }} />
+                <Bar dataKey="revenue" fill="oklch(0.58 0.17 148)" radius={[6,6,0,0]} />
+                <Bar dataKey="expenses" fill="oklch(0.78 0.16 75)" radius={[6,6,0,0]} />
+                <Bar dataKey="profit" fill="oklch(0.7 0.15 200)" radius={[6,6,0,0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border bg-card p-5 shadow-soft">
+          <h3 className="text-sm font-semibold">Top selling products</h3>
           <ul className="mt-4 space-y-3">
-            {customers.slice(0, 5).map((c, i) => (
-              <li key={c.id} className="flex items-center gap-3">
-                <div className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-xs font-bold text-primary">{c.name.split(" ").map(n => n[0]).join("")}</div>
+            {topSelling.map((p, i) => (
+              <li key={p.name} className="flex items-center gap-3">
+                <div className="grid h-8 w-8 place-items-center rounded-lg bg-primary-soft text-xs font-bold text-primary">{i + 1}</div>
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium">{c.name}</p>
-                  <p className="text-[11px] text-muted-foreground">{c.orders} orders</p>
+                  <p className="truncate text-sm font-medium">{p.name}</p>
+                  <p className="text-[11px] text-muted-foreground">{p.qty} sold</p>
                 </div>
-                <span className="text-sm font-semibold">{formatPrice(c.spent)}</span>
+                <span className="text-xs font-semibold">{rupees(p.revenue)}</span>
               </li>
             ))}
           </ul>
